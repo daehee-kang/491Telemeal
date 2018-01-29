@@ -23,5 +23,19 @@ namespace Telemeal.Windows
         {
             InitializeComponent();
         }
+
+        private void Intro_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            var login = new LogIn();
+            login.Closed += Window_Closed;
+            login.Show();
+            this.Hide();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            this.Show();
+        }
     }
 }
