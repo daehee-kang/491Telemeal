@@ -35,7 +35,7 @@
         </Border>
         <Border BorderBrush="Black" BorderThickness="0.6" DockPanel.Dock="Top">
             <WrapPanel Name="Category" Height="42">
-                <Image Name="Logo" Height="41" Width="100" Source="C:\Users\daehe\source\repos\491pt\491pt\Images\InNOut.png"></Image>
+                <Image Name="Logo" Height="41" Width="100" Source="\Telemeal;component\Images\InNOut.png"></Image>
                 <Button Name="Appetizer" Height="38" Width="102" Click="Appetizer_Click">Appetizer</Button>
                 <Button Name="Main" Height="38" Width="102" Click="Main_Click">Main</Button>
                 <Button Name="Dessert" Height="38" Width="102" Click="Dessert_Click">Dessert</Button>

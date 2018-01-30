@@ -28,6 +28,6 @@
         <TextBlock FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center">
             See Cashier to finish ordering
         </TextBlock>
-        <Button Margin="174,20,174,0" Height="30">Back to Intro</Button>
+        <Button Margin="174,20,174,0" Height="30" Click="Intro_Click">Back to Intro</Button>
     </StackPanel>
 </Window>
