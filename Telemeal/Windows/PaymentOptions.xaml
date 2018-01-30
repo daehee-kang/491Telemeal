@@ -19,8 +19,12 @@
         <Border BorderBrush="Black" BorderThickness="1.0" DockPanel.Dock="Right">
             <ListView Width="150" DockPanel.Dock="Right"></ListView>
         </Border>
-        <StackPanel Height="150" DockPanel.Dock="Top">
-            <TextBlock HorizontalAlignment="Center" FontSize="36" Margin="0,50,0,0">SubTotal:</TextBlock>
+        <StackPanel DockPanel.Dock="Top" Height="30" Margin="0,0,462,0">
+            <Button x:Name="Menu" Content="Menu" d:LayoutOverrides="Height" Click="Menu_Click"/>
+        </StackPanel>
+        <StackPanel Height="150" DockPanel.Dock="Top" HorizontalAlignment="Right" Width="540">
+            
+                <TextBlock HorizontalAlignment="Center" FontSize="36" Margin="0,50,0,0">SubTotal:</TextBlock>
             <TextBlock Name="AmountDue" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold" Margin="169,0,169,100"></TextBlock>
         </StackPanel>
         <UniformGrid Rows="2" Columns="2">
