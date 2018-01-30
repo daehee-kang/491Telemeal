@@ -16,7 +16,7 @@ using Telemeal.Model;
 namespace Telemeal.Windows
 {
     public partial class OrderPage : Window
-    { 
+    {
         List<Food> foods = new List<Food>();
         double tax = 0.1;
         double total = 0;
@@ -29,15 +29,15 @@ namespace Telemeal.Windows
             this.taxTBox.Text = string.Format("{0:F2}", total * tax);
             this.subtotalTBox.Text = string.Format("{0:F2}", (total + Double.Parse(taxTBox.Text)));
 
-            foods.Add(new Food() { FoodID = 1, Name = "Hamburger", Price = 2.50, FdCtgr = Food_Category.Main });
-            foods.Add(new Food() { FoodID = 2, Name = "Cheeseburger", Price = 3.00, FdCtgr = Food_Category.Main });
-            foods.Add(new Food() { FoodID = 3, Name = "Double Double Burger", Price = 4.00, FdCtgr = Food_Category.Main });
-            foods.Add(new Food() { FoodID = 4, Name = "French Fries", Price = 1.50, FdCtgr = Food_Category.Appetizer });
-            foods.Add(new Food() { FoodID = 5, Name = "Animal Fries", Price = 3.00, FdCtgr = Food_Category.Appetizer });
-            foods.Add(new Food() { FoodID = 6, Name = "sm Drink", Price = 1.50, FdCtgr = Food_Category.Drink });
-            foods.Add(new Food() { FoodID = 7, Name = "lg Drink", Price = 2.00, FdCtgr = Food_Category.Drink });
-            foods.Add(new Food() { FoodID = 8, Name = "Milkshake", Price = 3.00, FdCtgr = Food_Category.Dessert });
-            foods.Add(new Food() { FoodID = 9, Name = "Cookie", Price = 1.00, FdCtgr = Food_Category.Dessert });
+            foods.Add(new Food() { FoodID = 1, Name = "Hamburger", Price = 2.50, MainCtgr = Main_Category.All, SubCtgr = Sub_Category.Main });
+            foods.Add(new Food() { FoodID = 2, Name = "Cheeseburger", Price = 3.00, MainCtgr = Main_Category.All, SubCtgr = Sub_Category.Main });
+            foods.Add(new Food() { FoodID = 3, Name = "Double Double Burger", Price = 4.00, MainCtgr = Main_Category.All, SubCtgr = Sub_Category.Main });
+            foods.Add(new Food() { FoodID = 4, Name = "French Fries", Price = 1.50, MainCtgr = Main_Category.All, SubCtgr = Sub_Category.Appetizer });
+            foods.Add(new Food() { FoodID = 5, Name = "Animal Fries", Price = 3.00, MainCtgr = Main_Category.All, SubCtgr = Sub_Category.Appetizer });
+            foods.Add(new Food() { FoodID = 6, Name = "sm Drink", Price = 1.50, MainCtgr = Main_Category.All, SubCtgr = Sub_Category.Drink });
+            foods.Add(new Food() { FoodID = 7, Name = "lg Drink", Price = 2.00, MainCtgr = Main_Category.All, SubCtgr = Sub_Category.Drink });
+            foods.Add(new Food() { FoodID = 8, Name = "Milkshake", Price = 3.00, MainCtgr = Main_Category.All, SubCtgr = Sub_Category.Dessert });
+            foods.Add(new Food() { FoodID = 9, Name = "Cookie", Price = 1.00, MainCtgr = Main_Category.All, SubCtgr = Sub_Category.Dessert });
 
             Menu.ItemsSource = foods;
             Menu.DisplayMemberPath = "Name";
@@ -69,33 +69,41 @@ namespace Telemeal.Windows
 
         private void Appetizer_Click(object sender, RoutedEventArgs e)
         {
-            Menu.ItemsSource = foods.Where(c => c.FdCtgr == Food_Category.Appetizer);
+            Menu.ItemsSource = foods.Where(c => c.SubCtgr == Sub_Category.Appetizer);
             Menu.DisplayMemberPath = "Name";
-            PriceMenu.ItemsSource = foods.Where(c => c.FdCtgr == Food_Category.Appetizer);
+            PriceMenu.ItemsSource = foods.Where(c => c.SubCtgr == Sub_Category.Appetizer);
             PriceMenu.DisplayMemberPath = "Price";
         }
 
         private void Main_Click(object sender, RoutedEventArgs e)
         {
-            Menu.ItemsSource = foods.Where(c => c.FdCtgr == Food_Category.Main);
+            Menu.ItemsSource = foods.Where(c => c.SubCtgr == Sub_Category.Main);
             Menu.DisplayMemberPath = "Name";
-            PriceMenu.ItemsSource = foods.Where(c => c.FdCtgr == Food_Category.Main);
+            PriceMenu.ItemsSource = foods.Where(c => c.SubCtgr == Sub_Category.Main);
             PriceMenu.DisplayMemberPath = "Price";
         }
 
         private void Dessert_Click(object sender, RoutedEventArgs e)
         {
-            Menu.ItemsSource = foods.Where(c => c.FdCtgr == Food_Category.Dessert);
+            Menu.ItemsSource = foods.Where(c => c.SubCtgr == Sub_Category.Dessert);
             Menu.DisplayMemberPath = "Name";
-            PriceMenu.ItemsSource = foods.Where(c => c.FdCtgr == Food_Category.Dessert);
+            PriceMenu.ItemsSource = foods.Where(c => c.SubCtgr == Sub_Category.Dessert);
             PriceMenu.DisplayMemberPath = "Price";
         }
 
         private void Drinks_Click(object sender, RoutedEventArgs e)
         {
-            Menu.ItemsSource = foods.Where(c => c.FdCtgr == Food_Category.Drink);
+            Menu.ItemsSource = foods.Where(c => c.SubCtgr == Sub_Category.Drink);
             Menu.DisplayMemberPath = "Name";
-            PriceMenu.ItemsSource = foods.Where(c => c.FdCtgr == Food_Category.Drink);
+            PriceMenu.ItemsSource = foods.Where(c => c.SubCtgr == Sub_Category.Drink);
+            PriceMenu.DisplayMemberPath = "Price";
+        }
+
+        private void All_Click(object sender, RoutedEventArgs e)
+        {
+            Menu.ItemsSource = foods.Where(c => c.MainCtgr == Main_Category.All);
+            Menu.DisplayMemberPath = "Name";
+            PriceMenu.ItemsSource = foods.Where(c => c.MainCtgr == Main_Category.All);
             PriceMenu.DisplayMemberPath = "Price";
         }
 
@@ -107,7 +115,7 @@ namespace Telemeal.Windows
             if (item != null)
             {
                 var content = item.Content as Food;
-                var fd = new Food() { FoodID = content.FoodID, Name = content.Name, Price = content.Price, Description = content.Description, FdCtgr = content.FdCtgr };
+                var fd = new Food() { FoodID = content.FoodID, Name = content.Name, Price = content.Price, Description = content.Description, SubCtgr = content.SubCtgr };
                 ItemCart.Items.Add(fd);
                 PriceCart.Items.Add(fd);
                 total += ((Food)item.Content).Price;
@@ -131,5 +139,8 @@ namespace Telemeal.Windows
             this.taxTBox.Text = string.Format("{0:F2}", total * tax);
             this.subtotalTBox.Text = string.Format("{0:F2}", (total + Double.Parse(taxTBox.Text)));
         }
+
+       
     }
 }
+

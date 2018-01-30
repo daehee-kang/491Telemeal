@@ -13,10 +13,18 @@ namespace Telemeal.Model
         public double Price { get; set; }
         public string Description { get; set; }
         public string Img { get; set; }
-        public Food_Category FdCtgr { get; set; }
+        public Main_Category MainCtgr { get; set; }
+        public Sub_Category SubCtgr { get; set; }
     }
 
-    public enum Food_Category
+    // To represent the All Button
+    public enum Main_Category
+    {
+        All
+    }
+
+    // To represent the differet categories of the food
+    public enum Sub_Category
     {
         Drink,
         Appetizer,

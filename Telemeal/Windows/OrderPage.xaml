@@ -35,11 +35,12 @@
         </Border>
         <Border BorderBrush="Black" BorderThickness="0.6" DockPanel.Dock="Top">
             <WrapPanel Name="Category" Height="42">
-                <Image Name="Logo" Height="41" Width="100" Source="\Telemeal;component\Images\InNOut.png"></Image>
-                <Button Name="Appetizer" Height="38" Width="102" Click="Appetizer_Click">Appetizer</Button>
-                <Button Name="Main" Height="38" Width="102" Click="Main_Click">Main</Button>
-                <Button Name="Dessert" Height="38" Width="102" Click="Dessert_Click">Dessert</Button>
-                <Button Name="Drinks" Height="38" Width="102" Click="Drinks_Click">Drinks</Button>
+                <Image x:Name="Logo" Height="41" Width="100" Source="\Telemeal;component\Images\InNOut.png"/>
+                <Button x:Name="All" Height="38" Width="79" Click="All_Click" Content="All"/>
+                <Button x:Name="Appetizer" Height="38" Width="94" Click="Appetizer_Click" Content="Appetizer"/>
+                <Button x:Name="Main" Height="38" Width="79" Click="Main_Click" Content="Main"/>
+                <Button x:Name="Dessert" Height="38" Width="79" Click="Dessert_Click" Content="Dessert"/>
+                <Button x:Name="Drinks" Height="38" Width="75" Click="Drinks_Click" Content="Drinks"/>
             </WrapPanel>
         </Border>
         <Border BorderBrush="Black" BorderThickness="0.6">
