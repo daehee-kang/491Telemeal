@@ -144,7 +144,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\animal.jpg" />
+    <Resource Include="Images\cheeseburger.png" />
+    <Resource Include="Images\doubleburger.png" />
+    <Resource Include="Images\fries.jpg" />
+    <Resource Include="Images\hamburger.png" />
+    <Resource Include="Images\milkshake.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\InNOut.png" />
   </ItemGroup>

@@ -18,6 +18,7 @@ namespace Telemeal.Windows
     public partial class OrderPage : Window
     { 
         List<Food> foods = new List<Food>();
+        List<Button> buttons = new List<Button>();
         double tax = 0.1;
         double total = 0;
 
@@ -29,7 +30,7 @@ namespace Telemeal.Windows
             this.taxTBox.Text = string.Format("{0:F2}", total * tax);
             this.subtotalTBox.Text = string.Format("{0:F2}", (total + Double.Parse(taxTBox.Text)));
 
-            foods.Add(new Food() { FoodID = 1, Name = "Hamburger", Price = 2.50, Img = "", FdCtgr = Food_Category.Main });
+            foods.Add(new Food() { FoodID = 1, Name = "Hamburger", Price = 2.50, Img = "/Telemeal;component/hamburger.png", FdCtgr = Food_Category.Main });
             foods.Add(new Food() { FoodID = 2, Name = "Cheeseburger", Price = 3.00, Img = "", FdCtgr = Food_Category.Main });
             foods.Add(new Food() { FoodID = 3, Name = "Double Double Burger", Price = 4.00, Img = "", FdCtgr = Food_Category.Main });
             foods.Add(new Food() { FoodID = 4, Name = "French Fries", Price = 1.50, Img = "", FdCtgr = Food_Category.Appetizer });
@@ -39,10 +40,41 @@ namespace Telemeal.Windows
             foods.Add(new Food() { FoodID = 8, Name = "Milkshake", Price = 3.00, Img = "", FdCtgr = Food_Category.Dessert });
             foods.Add(new Food() { FoodID = 9, Name = "Cookie", Price = 1.00, Img = "", FdCtgr = Food_Category.Dessert });
 
-            Menu.ItemsSource = foods;
-            Menu.DisplayMemberPath = "Name";
-            PriceMenu.ItemsSource = foods;
-            PriceMenu.DisplayMemberPath = "Price";
+            foreach(Food f in foods)
+            {
+                Button b = new Button();
+                WrapPanel wp = new WrapPanel();
+                /*
+                Image image = new Image
+                {
+                    Source = new BitmapImage(new Uri(f.Img))
+                };
+                wp.Children.Add(image);
+                */
+                TextBlock name = new TextBlock
+                {
+                    Text = f.Name
+                };
+                wp.Children.Add(name);
+
+                TextBlock desc = new TextBlock
+                {
+                    Text = f.Description
+                };
+                wp.Children.Add(desc);
+
+                TextBlock price = new TextBlock
+                {
+                    Text = f.Price.ToString()
+                };
+                wp.Children.Add(price);
+
+                b.Content = wp;
+
+                buttons.Add(b);
+
+                Menu.Children.Add(b);
+            }
 
             /*
             DataAccess db = new DataAccess();
@@ -69,36 +101,25 @@ namespace Telemeal.Windows
 
         private void Appetizer_Click(object sender, RoutedEventArgs e)
         {
-            Menu.ItemsSource = foods.Where(c => c.FdCtgr == Food_Category.Appetizer);
-            Menu.DisplayMemberPath = "Name";
-            PriceMenu.ItemsSource = foods.Where(c => c.FdCtgr == Food_Category.Appetizer);
-            PriceMenu.DisplayMemberPath = "Price";
+
         }
 
         private void Main_Click(object sender, RoutedEventArgs e)
         {
-            Menu.ItemsSource = foods.Where(c => c.FdCtgr == Food_Category.Main);
-            Menu.DisplayMemberPath = "Name";
-            PriceMenu.ItemsSource = foods.Where(c => c.FdCtgr == Food_Category.Main);
-            PriceMenu.DisplayMemberPath = "Price";
+
         }
 
         private void Dessert_Click(object sender, RoutedEventArgs e)
         {
-            Menu.ItemsSource = foods.Where(c => c.FdCtgr == Food_Category.Dessert);
-            Menu.DisplayMemberPath = "Name";
-            PriceMenu.ItemsSource = foods.Where(c => c.FdCtgr == Food_Category.Dessert);
-            PriceMenu.DisplayMemberPath = "Price";
+
         }
 
         private void Drinks_Click(object sender, RoutedEventArgs e)
         {
-            Menu.ItemsSource = foods.Where(c => c.FdCtgr == Food_Category.Drink);
-            Menu.DisplayMemberPath = "Name";
-            PriceMenu.ItemsSource = foods.Where(c => c.FdCtgr == Food_Category.Drink);
-            PriceMenu.DisplayMemberPath = "Price";
+
         }
 
+        /*
         private void Menu_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             ItemCart.DisplayMemberPath = "Name";
@@ -116,6 +137,7 @@ namespace Telemeal.Windows
             this.taxTBox.Text = string.Format("{0:F2}", total * tax);
             this.subtotalTBox.Text = string.Format("{0:F2}", (total + Double.Parse(taxTBox.Text)));
         }
+        */
 
         private void ItemCart_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

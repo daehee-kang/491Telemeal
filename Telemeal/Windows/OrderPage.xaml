@@ -43,10 +43,7 @@
             </WrapPanel>
         </Border>
         <Border BorderBrush="Black" BorderThickness="0.6">
-            <DockPanel>
-                <ListBox DockPanel.Dock="Left" Name="Menu" Width="450" PreviewMouseDown="Menu_PreviewMouseDown"></ListBox>
-                <ListBox DockPanel.Dock="Right" Name="PriceMenu" Width="60"></ListBox>
-            </DockPanel>
+            <StackPanel Name="Menu" Width="auto"></StackPanel>
         </Border>
     </DockPanel>
 </Window>
