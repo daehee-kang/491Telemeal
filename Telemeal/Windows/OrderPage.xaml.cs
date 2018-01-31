@@ -42,6 +42,8 @@ namespace Telemeal.Windows
 
             foreach(Food f in foods)
             {
+                ScrollViewer viewer = new ScrollViewer();
+                viewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
                 Grid grid = new Grid();
                 grid.Height = 100;
                 grid.ShowGridLines = true;

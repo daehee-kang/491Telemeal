@@ -45,7 +45,9 @@
             </WrapPanel>
         </Border>
         <Border BorderBrush="Black" BorderThickness="0.6">
-            <StackPanel Name="Menu" Width="auto"></StackPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Name="Menu" Width="auto"></StackPanel>
+            </ScrollViewer>
         </Border>
     </DockPanel>
 </Window>
