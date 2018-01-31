@@ -27,6 +27,15 @@ namespace Telemeal.Windows
             AmountDue.Text = "$" + string.Format("{0:F2}", dueAmount);
         }
 
+        private void Menu_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            var orderPage = new OrderPage();
+            orderPage.Closed += Window_Closed;
+            orderPage.Show();
+            this.Hide();
+        }
+
         private void Cash_Click(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
