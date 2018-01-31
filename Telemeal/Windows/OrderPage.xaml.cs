@@ -30,15 +30,15 @@ namespace Telemeal.Windows
             this.taxTBox.Text = string.Format("{0:F2}", total * tax);
             this.subtotalTBox.Text = string.Format("{0:F2}", (total + Double.Parse(taxTBox.Text)));
 
-            foods.Add(new Food() { FoodID = 1, Name = "Hamburger", Price = 2.50, Img = "/Telemeal;component/Images/hamburger.png", FdCtgr = Food_Category.Main });
-            foods.Add(new Food() { FoodID = 2, Name = "Cheeseburger", Price = 3.00, Img = "/Telemeal;component/Images/cheeseburger.png", FdCtgr = Food_Category.Main });
-            foods.Add(new Food() { FoodID = 3, Name = "Double Double Burger", Price = 4.00, Img = "/Telemeal;component/Images/doubleburger.png", FdCtgr = Food_Category.Main });
-            foods.Add(new Food() { FoodID = 4, Name = "French Fries", Price = 1.50, Img = "/Telemeal;component/Images/fries.jpg", FdCtgr = Food_Category.Appetizer });
-            foods.Add(new Food() { FoodID = 5, Name = "Animal Fries", Price = 3.00, Img = "/Telemeal;component/Images/animal.jpg", FdCtgr = Food_Category.Appetizer });
-            foods.Add(new Food() { FoodID = 6, Name = "sm Drink", Price = 1.50, Img = "", FdCtgr = Food_Category.Drink });
-            foods.Add(new Food() { FoodID = 7, Name = "lg Drink", Price = 2.00, Img = "", FdCtgr = Food_Category.Drink });
-            foods.Add(new Food() { FoodID = 8, Name = "Milkshake", Price = 3.00, Img = "/Telemeal;component/Images/milkshake.jpg", FdCtgr = Food_Category.Dessert });
-            foods.Add(new Food() { FoodID = 9, Name = "Cookie", Price = 1.00, Img = "", FdCtgr = Food_Category.Dessert });
+            foods.Add(new Food() { FoodID = 1, Name = "Hamburger", Price = 2.50, Img = "/Telemeal;component/Images/hamburger.png", SubCtgr = Sub_Category.Main });
+            foods.Add(new Food() { FoodID = 2, Name = "Cheeseburger", Price = 3.00, Img = "/Telemeal;component/Images/cheeseburger.png", SubCtgr = Sub_Category.Main });
+            foods.Add(new Food() { FoodID = 3, Name = "Double Double Burger", Price = 4.00, Img = "/Telemeal;component/Images/doubleburger.png", SubCtgr = Sub_Category.Main });
+            foods.Add(new Food() { FoodID = 4, Name = "French Fries", Price = 1.50, Img = "/Telemeal;component/Images/fries.jpg", SubCtgr = Sub_Category.Appetizer });
+            foods.Add(new Food() { FoodID = 5, Name = "Animal Fries", Price = 3.00, Img = "/Telemeal;component/Images/animal.jpg", SubCtgr = Sub_Category.Appetizer });
+            foods.Add(new Food() { FoodID = 6, Name = "sm Drink", Price = 1.50, Img = "", SubCtgr = Sub_Category.Drink });
+            foods.Add(new Food() { FoodID = 7, Name = "lg Drink", Price = 2.00, Img = "", SubCtgr = Sub_Category.Drink });
+            foods.Add(new Food() { FoodID = 8, Name = "Milkshake", Price = 3.00, Img = "/Telemeal;component/Images/milkshake.jpg", SubCtgr = Sub_Category.Dessert });
+            foods.Add(new Food() { FoodID = 9, Name = "Cookie", Price = 1.00, Img = "", SubCtgr = Sub_Category.Dessert });
 
             foreach(Food f in foods)
             {
@@ -82,7 +82,7 @@ namespace Telemeal.Windows
 
                 TextBlock category = new TextBlock
                 {
-                    Text = f.FdCtgr.ToString()
+                    Text = f.SubCtgr.ToString()
                 };
                 category.TextAlignment = TextAlignment.Left;
                 DockPanel.SetDock(category, Dock.Top);
@@ -142,6 +142,16 @@ namespace Telemeal.Windows
         }
 
         private void Drinks_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void All_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClearAll_Click(object sender, RoutedEventArgs e)
         {
 
         }
