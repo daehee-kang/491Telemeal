@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Telemeal.Model;
+using System.Windows.Navigation;
+using System.Collections.ObjectModel;
 
 namespace Telemeal.Windows
 {
@@ -224,16 +226,46 @@ namespace Telemeal.Windows
 
         private void foodClick(object sender, MouseButtonEventArgs e)
         {
+            ItemCart.DisplayMemberPath = "Name";
+            PriceCart.DisplayMemberPath = "Price";
+
             Grid foodGrid = sender as Grid;
             Food f = foods.Where(x => x.FoodID == int.Parse(foodGrid.Tag.ToString())).First();
 
-            ItemCart.Items.Add(f.Name);
-            PriceCart.Items.Add(f.Price);
-
+            ItemCart.Items.Add(f);
+            PriceCart.Items.Add(f);
+            
             total += f.Price;
             this.totalTBox.Text = string.Format("{0:F2}", total);
             this.taxTBox.Text = string.Format("{0:F2}", total* tax);
             this.subtotalTBox.Text = string.Format("{0:F2}", (total + Double.Parse(taxTBox.Text)));
+        }
+
+        public Visual GetDescendantByType(Visual element, Type type)
+        {
+            if (element == null) return null;
+            if (element.GetType() == type) return element;
+            Visual foundElement = null;
+            if (element is FrameworkElement)
+            {
+                (element as FrameworkElement).ApplyTemplate();
+            }
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(element); i++)
+            {
+                Visual visual = VisualTreeHelper.GetChild(element, i) as Visual;
+                foundElement = GetDescendantByType(visual, type);
+                if (foundElement != null)
+                    break;
+            }
+            return foundElement;
+        }
+
+
+        private void lbx2_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            ScrollViewer _listboxScrollViewer1 = GetDescendantByType(ItemCart, typeof(ScrollViewer)) as ScrollViewer;
+            ScrollViewer _listboxScrollViewer2 = GetDescendantByType(PriceCart, typeof(ScrollViewer)) as ScrollViewer;
+            _listboxScrollViewer1.ScrollToVerticalOffset(_listboxScrollViewer2.VerticalOffset);
         }
     }
 }
