@@ -139,7 +139,12 @@ namespace Telemeal.Windows
 
         private void ClearAll_Click(object sender, RoutedEventArgs e)
         {
-
+            ItemCart.Items.Clear();
+            PriceCart.Items.Clear();
+            total = 0;
+            this.totalTBox.Text = string.Format("{0:F2}", total);
+            this.taxTBox.Text = string.Format("{0:F2}", total * tax);
+            this.subtotalTBox.Text = string.Format("{0:F2}", (total + Double.Parse(taxTBox.Text)));
         }
 
         private void ItemCart_MouseDoubleClick(object sender, MouseButtonEventArgs e)
