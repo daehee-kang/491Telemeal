@@ -166,7 +166,7 @@ namespace Telemeal.Windows
             grid.Height = 100;
             grid.ShowGridLines = true;
             grid.Background = new SolidColorBrush(Colors.AntiqueWhite);
-            grid.MouseDown += new MouseButtonEventHandler(foodClick);
+            grid.MouseDown += new MouseButtonEventHandler(FoodClick);
 
             ColumnDefinition gridCol1 = new ColumnDefinition();
             ColumnDefinition gridCol2 = new ColumnDefinition();
