@@ -200,26 +200,6 @@ namespace Telemeal.Windows
 
         }
 
-        /*
-        private void Menu_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            ItemCart.DisplayMemberPath = "Name";
-            PriceCart.DisplayMemberPath = "Price";
-            var item = ItemsControl.ContainerFromElement(Menu, e.OriginalSource as DependencyObject) as ListBoxItem;
-            if (item != null)
-            {
-                var content = item.Content as Food;
-                var fd = new Food() { FoodID = content.FoodID, Name = content.Name, Price = content.Price, Description = content.Description, FdCtgr = content.FdCtgr };
-                ItemCart.Items.Add(fd);
-                PriceCart.Items.Add(fd);
-                total += ((Food)item.Content).Price;
-            }
-            this.totalTBox.Text = string.Format("{0:F2}", total);
-            this.taxTBox.Text = string.Format("{0:F2}", total * tax);
-            this.subtotalTBox.Text = string.Format("{0:F2}", (total + Double.Parse(taxTBox.Text)));
-        }
-        */
-
         private void ItemCart_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Food selected = ItemCart.SelectedItem as Food;
@@ -240,9 +220,11 @@ namespace Telemeal.Windows
             ScrollViewer viewer = new ScrollViewer();
             viewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             Grid grid = new Grid();
+            grid.Tag = f.FoodID;
             grid.Height = 100;
             grid.ShowGridLines = true;
             grid.Background = new SolidColorBrush(Colors.AntiqueWhite);
+            grid.MouseDown += new MouseButtonEventHandler(foodClick);
 
             ColumnDefinition gridCol1 = new ColumnDefinition();
             ColumnDefinition gridCol2 = new ColumnDefinition();
@@ -298,6 +280,20 @@ namespace Telemeal.Windows
             grids.Add(grid);
 
             Menu.Children.Add(grid);
+        }
+
+        private void foodClick(object sender, MouseButtonEventArgs e)
+        {
+            Grid foodGrid = sender as Grid;
+            Food f = foods.Where(x => x.FoodID == int.Parse(foodGrid.Tag.ToString())).First();
+
+            ItemCart.Items.Add(f.Name);
+            PriceCart.Items.Add(f.Price);
+
+            total += f.Price;
+            this.totalTBox.Text = string.Format("{0:F2}", total);
+            this.taxTBox.Text = string.Format("{0:F2}", total* tax);
+            this.subtotalTBox.Text = string.Format("{0:F2}", (total + Double.Parse(taxTBox.Text)));
         }
     }
 }
