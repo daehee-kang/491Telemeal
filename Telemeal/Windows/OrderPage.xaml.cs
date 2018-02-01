@@ -42,67 +42,7 @@ namespace Telemeal.Windows
 
             foreach(Food f in foods)
             {
-                ScrollViewer viewer = new ScrollViewer();
-                viewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-                Grid grid = new Grid();
-                grid.Height = 100;
-                grid.ShowGridLines = true;
-                grid.Background = new SolidColorBrush(Colors.AntiqueWhite);
-
-                ColumnDefinition gridCol1 = new ColumnDefinition();
-                ColumnDefinition gridCol2 = new ColumnDefinition();
-                gridCol1.Width = new GridLength(3, GridUnitType.Star);
-                gridCol2.Width = new GridLength(8, GridUnitType.Star);
-                grid.ColumnDefinitions.Add(gridCol1);
-                grid.ColumnDefinitions.Add(gridCol2);
-
-                Image image = new Image
-                {
-                    Source = new BitmapImage(new Uri(f.Img, UriKind.Relative))
-                };
-                image.Stretch = Stretch.Fill;
-                Grid.SetColumn(image, 0);
-                grid.Children.Add(image);
-
-                DockPanel dp = new DockPanel();
-
-                TextBlock price = new TextBlock
-                {
-                    Text = f.Price.ToString(),
-                    Width = 30
-                };
-                DockPanel.SetDock(price, Dock.Right);
-                dp.Children.Add(price);
-
-                TextBlock name = new TextBlock
-                {
-                    Text = f.Name
-                };
-                name.TextAlignment = TextAlignment.Left;
-                DockPanel.SetDock(name, Dock.Top);
-                dp.Children.Add(name);
-
-                TextBlock category = new TextBlock
-                {
-                    Text = f.SubCtgr.ToString()
-                };
-                category.TextAlignment = TextAlignment.Left;
-                DockPanel.SetDock(category, Dock.Top);
-                dp.Children.Add(category);
-
-                TextBlock desc = new TextBlock
-                {
-                    Text = f.Description
-                };
-                desc.TextAlignment = TextAlignment.Left;
-                dp.Children.Add(desc);
-
-                Grid.SetColumn(dp, 1);
-                grid.Children.Add(dp);
-
-                grids.Add(grid);
-
-                Menu.Children.Add(grid);
+                ChangeMenu(f);
             }
 
             /*
@@ -137,64 +77,7 @@ namespace Telemeal.Windows
             {
                 if (f.SubCtgr == Sub_Category.Appetizer)
                 {
-                    Grid grid = new Grid();
-                    grid.Height = 100;
-                    grid.ShowGridLines = true;
-                    grid.Background = new SolidColorBrush(Colors.AntiqueWhite);
-
-                    ColumnDefinition gridCol1 = new ColumnDefinition();
-                    ColumnDefinition gridCol2 = new ColumnDefinition();
-                    gridCol1.Width = new GridLength(3, GridUnitType.Star);
-                    gridCol2.Width = new GridLength(8, GridUnitType.Star);
-                    grid.ColumnDefinitions.Add(gridCol1);
-                    grid.ColumnDefinitions.Add(gridCol2);
-
-                    Image image = new Image
-                    {
-                        Source = new BitmapImage(new Uri(f.Img, UriKind.Relative))
-                    };
-                    image.Stretch = Stretch.Fill;
-                    Grid.SetColumn(image, 0);
-                    grid.Children.Add(image);
-
-                    DockPanel dp = new DockPanel();
-
-                    TextBlock price = new TextBlock
-                    {
-                        Text = f.Price.ToString(),
-                        Width = 30
-                    };
-                    DockPanel.SetDock(price, Dock.Right);
-                    dp.Children.Add(price);
-
-                    TextBlock name = new TextBlock
-                    {
-                        Text = f.Name
-                    };
-                    name.TextAlignment = TextAlignment.Left;
-                    DockPanel.SetDock(name, Dock.Top);
-                    dp.Children.Add(name);
-
-                    TextBlock category = new TextBlock
-                    {
-                        Text = f.SubCtgr.ToString()
-                    };
-                    category.TextAlignment = TextAlignment.Left;
-                    DockPanel.SetDock(category, Dock.Top);
-                    dp.Children.Add(category);
-
-                    TextBlock desc = new TextBlock
-                    {
-                        Text = f.Description
-                    };
-                    desc.TextAlignment = TextAlignment.Left;
-                    dp.Children.Add(desc);
-                    Grid.SetColumn(dp, 1);
-                    grid.Children.Add(dp);
-
-                    grids.Add(grid);
-
-                    Menu.Children.Add(grid);
+                    ChangeMenu(f);
                 }
             }
         }
@@ -208,64 +91,7 @@ namespace Telemeal.Windows
             {
                 if (f.SubCtgr == Sub_Category.Main)
                 {
-                    Grid grid = new Grid();
-                    grid.Height = 100;
-                    grid.ShowGridLines = true;
-                    grid.Background = new SolidColorBrush(Colors.AntiqueWhite);
-
-                    ColumnDefinition gridCol1 = new ColumnDefinition();
-                    ColumnDefinition gridCol2 = new ColumnDefinition();
-                    gridCol1.Width = new GridLength(3, GridUnitType.Star);
-                    gridCol2.Width = new GridLength(8, GridUnitType.Star);
-                    grid.ColumnDefinitions.Add(gridCol1);
-                    grid.ColumnDefinitions.Add(gridCol2);
-
-                    Image image = new Image
-                    {
-                        Source = new BitmapImage(new Uri(f.Img, UriKind.Relative))
-                    };
-                    image.Stretch = Stretch.Fill;
-                    Grid.SetColumn(image, 0);
-                    grid.Children.Add(image);
-
-                    DockPanel dp = new DockPanel();
-
-                    TextBlock price = new TextBlock
-                    {
-                        Text = f.Price.ToString(),
-                        Width = 30
-                    };
-                    DockPanel.SetDock(price, Dock.Right);
-                    dp.Children.Add(price);
-
-                    TextBlock name = new TextBlock
-                    {
-                        Text = f.Name
-                    };
-                    name.TextAlignment = TextAlignment.Left;
-                    DockPanel.SetDock(name, Dock.Top);
-                    dp.Children.Add(name);
-
-                    TextBlock category = new TextBlock
-                    {
-                        Text = f.SubCtgr.ToString()
-                    };
-                    category.TextAlignment = TextAlignment.Left;
-                    DockPanel.SetDock(category, Dock.Top);
-                    dp.Children.Add(category);
-
-                    TextBlock desc = new TextBlock
-                    {
-                        Text = f.Description
-                    };
-                    desc.TextAlignment = TextAlignment.Left;
-                    dp.Children.Add(desc);
-                    Grid.SetColumn(dp, 1);
-                    grid.Children.Add(dp);
-
-                    grids.Add(grid);
-
-                    Menu.Children.Add(grid);
+                    ChangeMenu(f);
                 }
             }
         }
@@ -279,63 +105,7 @@ namespace Telemeal.Windows
             {
                 if (f.SubCtgr == Sub_Category.Dessert)
                 {
-                    Grid grid = new Grid();
-                    grid.Height = 100;
-                    grid.ShowGridLines = true;
-                    grid.Background = new SolidColorBrush(Colors.AntiqueWhite);
-
-                    ColumnDefinition gridCol1 = new ColumnDefinition();
-                    ColumnDefinition gridCol2 = new ColumnDefinition();
-                    gridCol1.Width = new GridLength(3, GridUnitType.Star);
-                    gridCol2.Width = new GridLength(8, GridUnitType.Star);
-                    grid.ColumnDefinitions.Add(gridCol1);
-                    grid.ColumnDefinitions.Add(gridCol2);
-                    Image image = new Image
-                    {
-                        Source = new BitmapImage(new Uri(f.Img, UriKind.Relative))
-                    };
-                    image.Stretch = Stretch.Fill;
-                    Grid.SetColumn(image, 0);
-                    grid.Children.Add(image);
-
-                    DockPanel dp = new DockPanel();
-
-                    TextBlock price = new TextBlock
-                    {
-                        Text = f.Price.ToString(),
-                        Width = 30
-                    };
-                    DockPanel.SetDock(price, Dock.Right);
-                    dp.Children.Add(price);
-
-                    TextBlock name = new TextBlock
-                    {
-                        Text = f.Name
-                    };
-                    name.TextAlignment = TextAlignment.Left;
-                    DockPanel.SetDock(name, Dock.Top);
-                    dp.Children.Add(name);
-
-                    TextBlock category = new TextBlock
-                    {
-                        Text = f.SubCtgr.ToString()
-                    };
-                    category.TextAlignment = TextAlignment.Left;
-                    DockPanel.SetDock(category, Dock.Top);
-                    dp.Children.Add(category);
-
-                    TextBlock desc = new TextBlock
-                    {
-                        Text = f.Description
-                    };
-                    desc.TextAlignment = TextAlignment.Left;
-                    dp.Children.Add(desc);
-                    Grid.SetColumn(dp, 1);
-                    grid.Children.Add(dp);
-
-                    grids.Add(grid);
-
-                    Menu.Children.Add(grid);
+                    ChangeMenu(f);
                 }
             }
         }
@@ -349,64 +119,7 @@ namespace Telemeal.Windows
             {
                 if (f.SubCtgr == Sub_Category.Drink)
                 {
-                    Grid grid = new Grid();
-                    grid.Height = 100;
-                    grid.ShowGridLines = true;
-                    grid.Background = new SolidColorBrush(Colors.AntiqueWhite);
-
-                    ColumnDefinition gridCol1 = new ColumnDefinition();
-                    ColumnDefinition gridCol2 = new ColumnDefinition();
-                    gridCol1.Width = new GridLength(3, GridUnitType.Star);
-                    gridCol2.Width = new GridLength(8, GridUnitType.Star);
-                    grid.ColumnDefinitions.Add(gridCol1);
-                    grid.ColumnDefinitions.Add(gridCol2);
-
-                    Image image = new Image
-                    {
-                        Source = new BitmapImage(new Uri(f.Img, UriKind.Relative))
-                    };
-                    image.Stretch = Stretch.Fill;
-                    Grid.SetColumn(image, 0);
-                    grid.Children.Add(image);
-
-                    DockPanel dp = new DockPanel();
-
-                    TextBlock price = new TextBlock
-                    {
-                        Text = f.Price.ToString(),
-                        Width = 30
-                    };
-                    DockPanel.SetDock(price, Dock.Right);
-                    dp.Children.Add(price);
-
-                    TextBlock name = new TextBlock
-                    {
-                        Text = f.Name
-                    };
-                    name.TextAlignment = TextAlignment.Left;
-                    DockPanel.SetDock(name, Dock.Top);
-                    dp.Children.Add(name);
-
-                    TextBlock category = new TextBlock
-                    {
-                        Text = f.SubCtgr.ToString()
-                    };
-                    category.TextAlignment = TextAlignment.Left;
-                    DockPanel.SetDock(category, Dock.Top);
-                    dp.Children.Add(category);
-
-                    TextBlock desc = new TextBlock
-                    {
-                        Text = f.Description
-                    };
-                    desc.TextAlignment = TextAlignment.Left;
-                    dp.Children.Add(desc);
-                    Grid.SetColumn(dp, 1);
-                    grid.Children.Add(dp);
-
-                    grids.Add(grid);
-
-                    Menu.Children.Add(grid);
+                    ChangeMenu(f);
                 }
 
             }
@@ -418,65 +131,7 @@ namespace Telemeal.Windows
             Menu.Children.Clear();
             foreach (Food f in foods)
             {
-                Grid grid = new Grid();
-                grid.Height = 100;
-                grid.ShowGridLines = true;
-                grid.Background = new SolidColorBrush(Colors.AntiqueWhite);
-
-                ColumnDefinition gridCol1 = new ColumnDefinition();
-                ColumnDefinition gridCol2 = new ColumnDefinition();
-                gridCol1.Width = new GridLength(3, GridUnitType.Star);
-                gridCol2.Width = new GridLength(8, GridUnitType.Star);
-                grid.ColumnDefinitions.Add(gridCol1);
-                grid.ColumnDefinitions.Add(gridCol2);
-
-                Image image = new Image
-                {
-                    Source = new BitmapImage(new Uri(f.Img, UriKind.Relative))
-                };
-                image.Stretch = Stretch.Fill;
-                Grid.SetColumn(image, 0);
-                grid.Children.Add(image);
-
-                DockPanel dp = new DockPanel();
-
-                TextBlock price = new TextBlock
-                {
-                    Text = f.Price.ToString(),
-                    Width = 30
-                };
-                DockPanel.SetDock(price, Dock.Right);
-                dp.Children.Add(price);
-
-                TextBlock name = new TextBlock
-                {
-                    Text = f.Name
-                };
-                name.TextAlignment = TextAlignment.Left;
-                DockPanel.SetDock(name, Dock.Top);
-                dp.Children.Add(name);
-
-                TextBlock category = new TextBlock
-                {
-                    Text = f.SubCtgr.ToString()
-                };
-                category.TextAlignment = TextAlignment.Left;
-                DockPanel.SetDock(category, Dock.Top);
-                dp.Children.Add(category);
-
-                TextBlock desc = new TextBlock
-                {
-                    Text = f.Description
-                };
-                desc.TextAlignment = TextAlignment.Left;
-                dp.Children.Add(desc);
-
-                Grid.SetColumn(dp, 1);
-                grid.Children.Add(dp);
-
-                grids.Add(grid);
-
-                Menu.Children.Add(grid);
+                ChangeMenu(f);
             }
         }
 
@@ -518,6 +173,71 @@ namespace Telemeal.Windows
             this.totalTBox.Text = string.Format("{0:F2}", total);
             this.taxTBox.Text = string.Format("{0:F2}", total * tax);
             this.subtotalTBox.Text = string.Format("{0:F2}", (total + Double.Parse(taxTBox.Text)));
+        }
+
+        private void ChangeMenu(Food f)
+        {
+            ScrollViewer viewer = new ScrollViewer();
+            viewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            Grid grid = new Grid();
+            grid.Height = 100;
+            grid.ShowGridLines = true;
+            grid.Background = new SolidColorBrush(Colors.AntiqueWhite);
+
+            ColumnDefinition gridCol1 = new ColumnDefinition();
+            ColumnDefinition gridCol2 = new ColumnDefinition();
+            gridCol1.Width = new GridLength(3, GridUnitType.Star);
+            gridCol2.Width = new GridLength(8, GridUnitType.Star);
+            grid.ColumnDefinitions.Add(gridCol1);
+            grid.ColumnDefinitions.Add(gridCol2);
+
+            Image image = new Image
+            {
+                Source = new BitmapImage(new Uri(f.Img, UriKind.Relative))
+            };
+            image.Stretch = Stretch.Fill;
+            Grid.SetColumn(image, 0);
+            grid.Children.Add(image);
+
+            DockPanel dp = new DockPanel();
+
+            TextBlock price = new TextBlock
+            {
+                Text = f.Price.ToString(),
+                Width = 30
+            };
+            DockPanel.SetDock(price, Dock.Right);
+            dp.Children.Add(price);
+
+            TextBlock name = new TextBlock
+            {
+                Text = f.Name
+            };
+            name.TextAlignment = TextAlignment.Left;
+            DockPanel.SetDock(name, Dock.Top);
+            dp.Children.Add(name);
+
+            TextBlock category = new TextBlock
+            {
+                Text = f.SubCtgr.ToString()
+            };
+            category.TextAlignment = TextAlignment.Left;
+            DockPanel.SetDock(category, Dock.Top);
+            dp.Children.Add(category);
+
+            TextBlock desc = new TextBlock
+            {
+                Text = f.Description
+            };
+            desc.TextAlignment = TextAlignment.Left;
+            dp.Children.Add(desc);
+
+            Grid.SetColumn(dp, 1);
+            grid.Children.Add(dp);
+
+            grids.Add(grid);
+
+            Menu.Children.Add(grid);
         }
     }
 }
