@@ -31,7 +31,7 @@
                 </DockPanel>
                 <Button Name="ClearAll" Width="100" Height="25" Margin="10, 10, 10, -175" Click="ClearAll_Click">Clear All</Button>
                 <ListBox Name="ItemCart" DockPanel.Dock="Left" Height="195" Width="115" Margin="-120, 0, 10, 10" VerticalAlignment="Top" MouseDoubleClick="ItemCart_MouseDoubleClick" ScrollViewer.VerticalScrollBarVisibility="Disabled"></ListBox>
-                <ListBox Name="PriceCart" DockPanel.Dock="Right" Height="195" Width="55" VerticalAlignment="Top" ScrollViewer.ScrollChanged="lbx2_ScrollChanged"></ListBox>
+                <ListBox Name="PriceCart" DockPanel.Dock="Right" Height="195" Width="55" VerticalAlignment="Top" MouseDoubleClick="PriceCart_MouseDoubleClick" ScrollViewer.ScrollChanged="lbx2_ScrollChanged"></ListBox>
             </DockPanel>
         </Border>
         <Border BorderBrush="Black" BorderThickness="0.6" DockPanel.Dock="Top">

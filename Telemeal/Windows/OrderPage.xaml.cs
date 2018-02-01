@@ -157,6 +157,21 @@ namespace Telemeal.Windows
             this.subtotalTBox.Text = string.Format("{0:F2}", (total + Double.Parse(taxTBox.Text)));
         }
 
+        private void PriceCart_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Food selected = PriceCart.SelectedItem as Food;
+            int index = PriceCart.SelectedIndex;
+            if (PriceCart.SelectedItem != null)
+            {
+                ItemCart.Items.RemoveAt(index);
+                PriceCart.Items.RemoveAt(index);
+                total -= selected.Price;
+            }
+            this.totalTBox.Text = string.Format("{0:F2}", total);
+            this.taxTBox.Text = string.Format("{0:F2}", total * tax);
+            this.subtotalTBox.Text = string.Format("{0:F2}", (total + Double.Parse(taxTBox.Text)));
+        }
+
         private void ChangeMenu(Food f)
         {
             ScrollViewer viewer = new ScrollViewer();
