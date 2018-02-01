@@ -15,16 +15,22 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
-    <Grid>
+    <Grid HorizontalAlignment="Center">
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>
+            <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <UniformGrid Grid.Row="1" Rows="1" Columns="2" Name="LoginPad">
-            <Button Name="GuestProceed" FontSize="20" Click="GuestProceed_Click" Margin="135,0,35,51" Height="Auto">Guest</Button>
-            <Button Name="Login" FontSize="20" Margin="8,0,160,51" Height="Auto">Log In</Button>
-        </UniformGrid>
-        <Label Content="Welcome to TeleMeal" HorizontalAlignment="Center" Margin="157,50,186,0" VerticalAlignment="Top" Width="349" FontSize="36"/>
-        <Label Content="Select an Option" HorizontalAlignment="Left" Margin="194,87,0,0" VerticalAlignment="Top" FontSize="36"/>
+        <Viewbox Grid.Row="1" Name="LoginPad" Margin="0, 0, 0, 20">
+            <UniformGrid Rows="1" Columns="2">
+                <Button Name="Guest" FontSize="9" Margin="0, 0, 5, 0" Click="GuestProceed_Click" Height="50">Guest</Button>
+                <Button Name="Login" FontSize="9" Margin="5, 0, 0, 0" Height="50">Log In</Button>
+            </UniformGrid>
+        </Viewbox>
+        <Viewbox>
+            <StackPanel Grid.Row="0">
+                <Label Content="Welcome to TeleMeal" HorizontalAlignment="Center" VerticalAlignment="Top" Width="Auto" FontSize="12"/>
+                <Label Content="Select an Option" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="12"/>
+            </StackPanel>
+        </Viewbox>
     </Grid>
 </Window>
