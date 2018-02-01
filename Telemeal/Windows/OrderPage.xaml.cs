@@ -224,7 +224,7 @@ namespace Telemeal.Windows
             Menu.Children.Add(grid);
         }
 
-        private void foodClick(object sender, MouseButtonEventArgs e)
+        private void FoodClick(object sender, MouseButtonEventArgs e)
         {
             ItemCart.DisplayMemberPath = "Name";
             PriceCart.DisplayMemberPath = "Price";
