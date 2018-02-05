@@ -15,6 +15,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
+        
     <DockPanel Background="Beige">
         <Border DockPanel.Dock="Right">
             <DockPanel Name="ShoppingCart" Width="175">

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Telemeal.Model;
 
 namespace Telemeal.Windows
 {
@@ -20,6 +21,7 @@ namespace Telemeal.Windows
     public partial class PaymentOptions : Window
     {
         private double dueAmount;
+        private List<Food> foods = new List<Food>();
         public PaymentOptions(double due)
         {
             dueAmount = due;
@@ -27,13 +29,25 @@ namespace Telemeal.Windows
             AmountDue.Text = "$" + string.Format("{0:F2}", dueAmount);
         }
 
+        public PaymentOptions(double due, List<Food> f) : this(due)
+        {
+            foreach(Food food in f)
+            {
+                foods.Add(food);
+            }
+            
+            Cart.DisplayMemberPath = "Name";
+
+            foreach(Food food in foods)
+            {
+                Cart.Items.Add(food);
+            }
+        }
+
         private void Menu_Click(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
-            var orderPage = new OrderPage();
-            orderPage.Closed += Window_Closed;
-            orderPage.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void Cash_Click(object sender, RoutedEventArgs e)

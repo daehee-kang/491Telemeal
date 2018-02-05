@@ -20,6 +20,7 @@ namespace Telemeal.Windows
     public partial class OrderPage : Window
     { 
         List<Food> foods = new List<Food>();
+        List<Food> cart = new List<Food>();
         List<Grid> grids = new List<Grid>();
         double tax = 0.1;
         double total = 0;
@@ -64,7 +65,7 @@ namespace Telemeal.Windows
         private void CheckOut_Click(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
-            var pmtscr = new PaymentOptions(total * (1 + tax));
+            var pmtscr = new PaymentOptions(total * (1 + tax),cart);
             pmtscr.Closed += Window_Closed;
             pmtscr.Show();
             this.Hide();
@@ -141,6 +142,7 @@ namespace Telemeal.Windows
         {
             ItemCart.Items.Clear();
             PriceCart.Items.Clear();
+            cart.Clear();
             total = 0;
             this.totalTBox.Text = string.Format("{0:F2}", total);
             this.taxTBox.Text = string.Format("{0:F2}", total * tax);
@@ -155,6 +157,7 @@ namespace Telemeal.Windows
             {
                 ItemCart.Items.RemoveAt(index);
                 PriceCart.Items.RemoveAt(index);
+                cart.RemoveAt(index);
                 total -= selected.Price;
             }
             this.totalTBox.Text = string.Format("{0:F2}", total);
@@ -170,6 +173,7 @@ namespace Telemeal.Windows
             {
                 ItemCart.Items.RemoveAt(index);
                 PriceCart.Items.RemoveAt(index);
+                cart.RemoveAt(index);
                 total -= selected.Price;
             }
             this.totalTBox.Text = string.Format("{0:F2}", total);
@@ -252,6 +256,7 @@ namespace Telemeal.Windows
             Grid foodGrid = sender as Grid;
             Food f = foods.Where(x => x.FoodID == int.Parse(foodGrid.Tag.ToString())).First();
 
+            cart.Add(f);
             ItemCart.Items.Add(f);
             PriceCart.Items.Add(f);
             

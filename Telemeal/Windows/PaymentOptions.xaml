@@ -17,7 +17,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}">
     <DockPanel>
         <Border BorderBrush="Black" BorderThickness="1.0" DockPanel.Dock="Right">
-            <ListView Width="150" DockPanel.Dock="Right"></ListView>
+            <ListView Name="Cart" Width="150" DockPanel.Dock="Right"></ListView>
         </Border>
         <StackPanel DockPanel.Dock="Top" Height="30" Margin="0,0,462,0">
             <Button x:Name="Menu" Content="Menu" d:LayoutOverrides="Height" Click="Menu_Click"/>
