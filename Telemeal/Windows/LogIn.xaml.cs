@@ -37,5 +37,14 @@ namespace Telemeal.Windows
             orderscr.Show();
             this.Hide();
         }
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            var foodtest = new FoodDBTestWindow();
+            foodtest.Closed += Window_Closed;
+            foodtest.Show();
+            this.Hide();
+        }
     }
 }

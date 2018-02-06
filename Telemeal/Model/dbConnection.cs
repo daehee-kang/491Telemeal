@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SQLite;
+
+namespace Telemeal.Model
+{
+    class dbConnection
+    {
+        public static string ConnectionString = @"Data Source=sqliteTMDB.db;Version=3;New=false;Compress=True";
+        public SQLiteConnection sqlite_conn;
+        public SQLiteCommand sqlite_cmd;
+        public SQLiteDataReader sqlite_dr;
+
+        public dbConnection()
+        {
+            sqlite_conn = new SQLiteConnection(ConnectionString);
+            sqlite_conn.Open();
+            sqlite_cmd = sqlite_conn.CreateCommand();
+        }
+
+        public void CreateFoodTable(string tableName)
+        {
+            string cmd = $"CREATE TABLE {tableName} (id INT, name VARCHAR(50), price DOUBLE, desc VARCHAR(200), img VARCHAR(100), mainctgr INT, subctgr INT)";
+            sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
+            sqlite_cmd.ExecuteNonQuery();
+        }
+
+        public void InsertFood(string tableName, Food food)
+        {
+            int foodID = food.FoodID;
+            string name = food.Name;
+            double price = food.Price;
+            string desc = food.Description;
+            string img = food.Img;
+            int mainCtr = (int) food.MainCtgr;
+            int subCtr = (int) food.SubCtgr;
+            string cmd = $"INSERT INTO {tableName} (id, name, price, desc, img, mainctgr, subctgr) VALUES ({foodID}, '{name}', {price}, '{desc}', '{img}', {mainCtr}, {subCtr})";
+            sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
+            sqlite_cmd.ExecuteNonQuery();
+        }
+
+        public void DeleteTable(string name)
+        {
+            string cmd = $"DROP TABLE {name}";
+            sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
+            sqlite_cmd.ExecuteNonQuery();
+        }
+
+        public SQLiteDataReader ViewFoodTable(string tableName)
+        {
+            string cmd = $"SELECT * FROM {tableName} order by id";
+            sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
+            sqlite_dr = sqlite_cmd.ExecuteReader();
+            return sqlite_dr;
+        }
+
+        public void Close()
+        {
+            sqlite_conn.Close();
+        }
+    }
+}
