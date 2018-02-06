@@ -22,6 +22,7 @@ namespace Telemeal.Windows
     {
         private double dueAmount;
         private List<Food> foods = new List<Food>();
+
         public PaymentOptions(double due)
         {
             dueAmount = due;
@@ -31,12 +32,26 @@ namespace Telemeal.Windows
 
         public PaymentOptions(double due, List<Food> f) : this(due)
         {
-            foreach(Food food in f)
+            var grid = new GridView();
+
+            Cart.View = grid;
+
+            grid.Columns.Add(new GridViewColumn
+            {
+                Header = "Name",
+                DisplayMemberBinding = new Binding("Name")
+            });
+            grid.Columns.Add(new GridViewColumn
+            {
+                Header = "Price",
+                DisplayMemberBinding = new Binding("Price")
+            });
+
+       
+            foreach (Food food in f)
             {
                 foods.Add(food);
             }
-            
-            Cart.DisplayMemberPath = "Name";
 
             foreach(Food food in foods)
             {
