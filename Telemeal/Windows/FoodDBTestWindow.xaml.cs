@@ -60,7 +60,7 @@ namespace Telemeal.Windows
 
         private void Generate_Click(object sender, RoutedEventArgs e)
         {
-            string name = dbName.Text;
+            string name = viewTableName.Text;
             SQLiteDataReader reader = conn.ViewFoodTable(name);
             while (reader.Read())
             {
@@ -72,6 +72,96 @@ namespace Telemeal.Windows
         {
             Button b = sender as Button;
             conn.DeleteTable(NameDelete.Text);
+        }
+
+        private void fTable_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            hintTableName.Visibility = Visibility.Visible;
+            if (fTable.Text.Length > 0)
+            {
+                hintTableName.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void fID_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            hintFoodID.Visibility = Visibility.Visible;
+            if (fID.Text.Length > 0)
+            {
+                hintFoodID.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void fName_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            hintFoodName.Visibility = Visibility.Visible;
+            if (fName.Text.Length > 0)
+            {
+                hintFoodName.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void fPrice_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            hintFoodPrice.Visibility = Visibility.Visible;
+            if (fPrice.Text.Length > 0)
+            {
+                hintFoodPrice.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void fDesc_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            hintFoodDesc.Visibility = Visibility.Visible;
+            if (fDesc.Text.Length > 0)
+            {
+                hintFoodDesc.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void fImg_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            hintFoodImg.Visibility = Visibility.Visible;
+            if (fImg.Text.Length > 0)
+            {
+                hintFoodImg.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void fMain_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            hintFoodCtgrMain.Visibility = Visibility.Visible;
+            if (fMain.Text.Length > 0)
+            {
+                hintFoodCtgrMain.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void fSub_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            hintFoodCtgrSub.Visibility = Visibility.Visible;
+            if (fSub.Text.Length > 0)
+            {
+                hintFoodCtgrSub.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void viewTableName_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            hintViewTableName.Visibility = Visibility.Visible;
+            if (viewTableName.Text.Length > 0)
+            {
+                hintViewTableName.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void NameDelete_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            hintTableDelete.Visibility = Visibility.Visible;
+            if (NameDelete.Text.Length > 0)
+            {
+                hintTableDelete.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

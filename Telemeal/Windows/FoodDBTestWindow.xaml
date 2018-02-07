@@ -11,20 +11,50 @@
         <TextBox Name="TableName"></TextBox>
         <Button Name="CreateTable" Click="CreateTable_Click">Create Table</Button>
         <TextBlock>Insert Food:</TextBlock>
-        <TextBox Name="fTable"/>
-        <TextBox Name="fID"></TextBox>
-        <TextBox Name="fName"></TextBox>
-        <TextBox Name="fPrice"></TextBox>
-        <TextBox Name="fDesc"></TextBox>
-        <TextBox Name="fImg"></TextBox>
-        <TextBox Name="fMain"></TextBox>
-        <TextBox Name="fSub"></TextBox>
+        <Grid>
+            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintTableName">Table Name</TextBlock>
+            <TextBox TextAlignment="Right" Name="fTable" SelectionChanged="fTable_SelectionChanged"/>
+        </Grid>
+        <Grid>
+            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintFoodID">Food ID</TextBlock>
+            <TextBox TextAlignment="Right" Name="fID" SelectionChanged="fID_SelectionChanged"/>
+        </Grid>
+        <Grid>
+            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintFoodName">Food Name</TextBlock>
+            <TextBox TextAlignment="Right" Name="fName" SelectionChanged="fName_SelectionChanged"/>
+        </Grid>
+        <Grid>
+            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintFoodPrice">Price</TextBlock>
+            <TextBox TextAlignment="Right" Name="fPrice" SelectionChanged="fPrice_SelectionChanged"/>
+        </Grid>
+        <Grid>
+            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintFoodDesc">Description</TextBlock>
+            <TextBox TextAlignment="Right" Name="fDesc" SelectionChanged="fDesc_SelectionChanged"/>
+        </Grid>
+        <Grid>
+            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintFoodImg">Image Path</TextBlock>
+            <TextBox TextAlignment="Right" Name="fImg" SelectionChanged="fImg_SelectionChanged"/>
+        </Grid>
+        <Grid>
+            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintFoodCtgrMain">Main-Category</TextBlock>
+            <TextBox TextAlignment="Right" Name="fMain" SelectionChanged="fMain_SelectionChanged"/>
+        </Grid>
+        <Grid>
+            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintFoodCtgrSub">Sub-Category</TextBlock>
+            <TextBox TextAlignment="Right" Name="fSub" SelectionChanged="fSub_SelectionChanged"/>
+        </Grid>
         <Button Name="AddFood" Click="AddFood_Click">Add Food</Button>
         <TextBlock>View Your Database:</TextBlock>
-        <TextBox Name="dbName"></TextBox>
+        <Grid>
+            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintViewTableName">Table Name</TextBlock>
+            <TextBox TextAlignment="Right" Name="viewTableName" SelectionChanged="viewTableName_SelectionChanged"/>
+        </Grid>
         <TextBlock Name="ShowData"></TextBlock>
         <Button Name="Generate" Click="Generate_Click">Generate</Button>
-        <TextBox Name="NameDelete"></TextBox>
+        <Grid>
+            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintTableDelete">Table Name</TextBlock>
+            <TextBox TextAlignment="Right" Name="NameDelete" SelectionChanged="NameDelete_SelectionChanged"/>
+        </Grid>
         <Button Name="Delete" Click="Delete_Click">Delete Table</Button>
     </StackPanel>
 </Window>
