@@ -4,18 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using System.IO;
+using System.Reflection;
+using System.Windows;
 
 namespace Telemeal.Model
 {
     class dbConnection
     {
-        public static string ConnectionString = @"Data Source=sqliteTMDB.db;Version=3;New=false;Compress=True";
+        private static string ConnectionString;// = @"Data Source=sqliteTMDB.db;Version=3;New=false;Compress=True";
         public SQLiteConnection sqlite_conn;
         public SQLiteCommand sqlite_cmd;
         public SQLiteDataReader sqlite_dr;
 
         public dbConnection()
         {
+            string v = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"../../"));
+            ConnectionString = string.Format($@"Data Source={v}sqliteTMDB.db;Version=3;New=false;Compress=True");
             sqlite_conn = new SQLiteConnection(ConnectionString);
             sqlite_conn.Open();
             sqlite_cmd = sqlite_conn.CreateCommand();

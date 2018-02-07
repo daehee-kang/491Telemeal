@@ -93,6 +93,9 @@
     <Compile Include="Windows\Coupon.xaml.cs">
       <DependentUpon>Coupon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\EmployeeLogin.xaml.cs">
+      <DependentUpon>EmployeeLogin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\FoodDBTestWindow.xaml.cs">
       <DependentUpon>FoodDBTestWindow.xaml</DependentUpon>
     </Compile>
@@ -146,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Coupon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EmployeeLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

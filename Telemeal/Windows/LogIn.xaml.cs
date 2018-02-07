@@ -41,9 +41,9 @@ namespace Telemeal.Windows
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
-            var foodtest = new FoodDBTestWindow();
-            foodtest.Closed += Window_Closed;
-            foodtest.Show();
+            var empLogin = new EmployeeLogin();
+            empLogin.Closed += Window_Closed;
+            empLogin.Show();
             this.Hide();
         }
     }
