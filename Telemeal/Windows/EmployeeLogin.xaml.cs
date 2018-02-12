@@ -94,9 +94,9 @@ namespace Telemeal.Windows
             Button b = sender as Button;
             if(ADMINID.Equals(id.ToString()))
             {
-                var foodDB = new FoodDBTestWindow();
-                foodDB.Closed += Window_Closed;
-                foodDB.Show();
+                var manOption = new ManagerOptions();
+                manOption.Closed += Window_Closed;
+                manOption.Show();
                 this.Hide();
             }
         }
