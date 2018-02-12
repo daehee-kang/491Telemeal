@@ -87,9 +87,12 @@ namespace Telemeal.Windows
             Button b = sender as Button;
             if(ADMINID.Equals(id.ToString()))
             {
-                var foodDB = new FoodDBTestWindow();
-                foodDB.Closed += Window_Closed;
-                foodDB.Show();
+                //var foodDB = new FoodDBTestWindow();
+                //foodDB.Closed += Window_Closed;
+                //foodDB.Show();
+                var employeeDB = new EmployeeDBTestWindow();
+                employeeDB.Closed += Window_Closed;
+                employeeDB.Show();
                 this.Hide();
             }
         }
