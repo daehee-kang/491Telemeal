@@ -106,9 +106,6 @@
     <Compile Include="Windows\LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ManagerOptions.xaml.cs">
-      <DependentUpon>ManagerOptions.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\OrderPage.xaml.cs">
       <DependentUpon>OrderPage.xaml</DependentUpon>
     </Compile>
@@ -172,10 +169,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\LogIn.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\ManagerOptions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
