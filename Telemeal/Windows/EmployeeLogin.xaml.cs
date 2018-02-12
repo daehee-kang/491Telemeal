@@ -21,16 +21,20 @@ namespace Telemeal.Windows
     {
         private static string ADMINID = "1234";
         private StringBuilder id = new StringBuilder();
+        private string pw;
         public EmployeeLogin()
         {
             InitializeComponent();
             //EmployeeID.Password = "1234";
+            pw = EmployeeID.Password;
         }
 
         private void Num1_Click(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
             id.Append('1');
+            pw += '1';
+
         }
         private void Num2_Click(object sender, RoutedEventArgs e)
         {
@@ -75,7 +79,10 @@ namespace Telemeal.Windows
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
-            id.Remove(id.Length-1, 1);
+            if (id.Length > 0)
+            {
+                id.Remove(id.Length - 1, 1);
+            }
         }
         private void Num0_Click(object sender, RoutedEventArgs e)
         {
@@ -87,12 +94,18 @@ namespace Telemeal.Windows
             Button b = sender as Button;
             if(ADMINID.Equals(id.ToString()))
             {
+<<<<<<< HEAD
                 //var foodDB = new FoodDBTestWindow();
                 //foodDB.Closed += Window_Closed;
                 //foodDB.Show();
                 var employeeDB = new EmployeeDBTestWindow();
                 employeeDB.Closed += Window_Closed;
                 employeeDB.Show();
+=======
+                var manOption = new ManagerOptions();
+                manOption.Closed += Window_Closed;
+                manOption.Show();
+>>>>>>> master
                 this.Hide();
             }
         }
