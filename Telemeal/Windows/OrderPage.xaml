@@ -27,7 +27,7 @@
                         <TextBox Name="taxTBox" Width="60"></TextBox>
                         <Label Width="60" HorizontalAlignment="Center">Subtotal:</Label>
                         <TextBox Name="subtotalTBox" Width="60"></TextBox>
-                        <Button Name="CheckOut" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="30" Width="144" Margin="15, 10" Click="CheckOut_Click">Check Out</Button>
+                        <Button Name="CheckOut" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="30" Width="122" Margin="29, 10" Click="CheckOut_Click">Check Out</Button>
                     </WrapPanel>
                 </DockPanel>
                 <Button Name="ClearAll" Width="100" Height="25" Margin="10, 10, 10, -175" Click="ClearAll_Click">Clear All</Button>

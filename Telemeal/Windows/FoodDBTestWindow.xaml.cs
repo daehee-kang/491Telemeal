@@ -61,7 +61,7 @@ namespace Telemeal.Windows
         private void Generate_Click(object sender, RoutedEventArgs e)
         {
             string name = viewTableName.Text;
-            SQLiteDataReader reader = conn.ViewTable(name);
+            SQLiteDataReader reader = conn.ViewFoodTable(name);
             while (reader.Read())
             {
                 ShowData.Text += string.Format($"Name: {reader["name"]}, Price: {reader["price"]}, Desc: {reader["desc"]}\n");
