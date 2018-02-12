@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Telemeal.Model;
 using System.Windows.Navigation;
 using System.Collections.ObjectModel;
+using System.Data.SQLite;
 
 namespace Telemeal.Windows
 {
@@ -25,25 +26,38 @@ namespace Telemeal.Windows
         double tax = 0.1;
         double total = 0;
 
+        dbConnection conn = new dbConnection();
         public OrderPage()
         {
             InitializeComponent();
+            List<Food> categories = new List<Food>();
+            categories.Add(new Food() {SubCtgr = Sub_Category.Drink });
+            categories.Add(new Food() {SubCtgr = Sub_Category.Appetizer });
+            categories.Add(new Food() {SubCtgr = Sub_Category.Main });
+            categories.Add(new Food() {SubCtgr = Sub_Category.Dessert });
+
+            SQLiteDataReader reader = conn.ViewFoodTable("Food");
+            while (reader.Read())
+            {
+                foods.Add(new Food() { FoodID = ((int)reader["id"]), Name = ((string)reader["name"]), Price = ((double)reader["price"]),
+                    Description = ((string)reader["desc"]), Img = ((string)reader["img"]),SubCtgr = categories[(int)reader["subctgr"]].SubCtgr});
+            }
 
             this.totalTBox.Text = total.ToString();
             this.taxTBox.Text = string.Format("{0:F2}", total * tax);
             this.subtotalTBox.Text = string.Format("{0:F2}", (total + Double.Parse(taxTBox.Text)));
 
-            foods.Add(new Food() { FoodID = 1, Name = "Hamburger", Price = 2.50, Img = "/Telemeal;component/Images/hamburger.png", SubCtgr = Sub_Category.Main });
-            foods.Add(new Food() { FoodID = 2, Name = "Cheeseburger", Price = 3.00, Img = "/Telemeal;component/Images/cheeseburger.png", SubCtgr = Sub_Category.Main });
-            foods.Add(new Food() { FoodID = 3, Name = "Double Double Burger", Price = 4.00, Img = "/Telemeal;component/Images/doubleburger.png", SubCtgr = Sub_Category.Main });
-            foods.Add(new Food() { FoodID = 4, Name = "French Fries", Price = 1.50, Img = "/Telemeal;component/Images/fries.jpg", SubCtgr = Sub_Category.Appetizer });
-            foods.Add(new Food() { FoodID = 5, Name = "Animal Fries", Price = 3.00, Img = "/Telemeal;component/Images/animal.jpg", SubCtgr = Sub_Category.Appetizer });
-            foods.Add(new Food() { FoodID = 6, Name = "sm Drink", Price = 1.50, Img = "", SubCtgr = Sub_Category.Drink });
-            foods.Add(new Food() { FoodID = 7, Name = "lg Drink", Price = 2.00, Img = "", SubCtgr = Sub_Category.Drink });
-            foods.Add(new Food() { FoodID = 8, Name = "Milkshake", Price = 3.00, Img = "/Telemeal;component/Images/milkshake.jpg", SubCtgr = Sub_Category.Dessert });
-            foods.Add(new Food() { FoodID = 9, Name = "Cookie", Price = 1.00, Img = "", SubCtgr = Sub_Category.Dessert });
+            //foods.Add(new Food() { FoodID = 1, Name = "Hamburger", Price = 2.50, Img = "/Telemeal;component/Images/hamburger.png", SubCtgr = Sub_Category.Main });
+            //foods.Add(new Food() { FoodID = 2, Name = "Cheeseburger", Price = 3.00, Img = "/Telemeal;component/Images/cheeseburger.png", SubCtgr = Sub_Category.Main });
+            //foods.Add(new Food() { FoodID = 3, Name = "Double Double Burger", Price = 4.00, Img = "/Telemeal;component/Images/doubleburger.png", SubCtgr = Sub_Category.Main });
+            //foods.Add(new Food() { FoodID = 4, Name = "French Fries", Price = 1.50, Img = "/Telemeal;component/Images/fries.jpg", SubCtgr = Sub_Category.Appetizer });
+            //foods.Add(new Food() { FoodID = 5, Name = "Animal Fries", Price = 3.00, Img = "/Telemeal;component/Images/animal.jpg", SubCtgr = Sub_Category.Appetizer });
+            //foods.Add(new Food() { FoodID = 6, Name = "sm Drink", Price = 1.50, Img = "", SubCtgr = Sub_Category.Drink });
+            //foods.Add(new Food() { FoodID = 7, Name = "lg Drink", Price = 2.00, Img = "", SubCtgr = Sub_Category.Drink });
+            //foods.Add(new Food() { FoodID = 8, Name = "Milkshake", Price = 3.00, Img = "/Telemeal;component/Images/milkshake.jpg", SubCtgr = Sub_Category.Dessert });
+            //foods.Add(new Food() { FoodID = 9, Name = "Cookie", Price = 1.00, Img = "", SubCtgr = Sub_Category.Dessert });
 
-            foreach(Food f in foods)
+            foreach (Food f in foods)
             {
                 ChangeMenu(f);
             }
