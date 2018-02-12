@@ -33,6 +33,13 @@ namespace Telemeal.Model
             sqlite_cmd.ExecuteNonQuery();
         }
 
+        public void CreateEmployeeTable(string tableName)
+        {
+            string cmd = $"CREATE TABLE {tableName} (id INT, name VARCHAR(50), position VARCHAR(50), privilege BOOL)";
+            sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
+            sqlite_cmd.ExecuteNonQuery();
+        }
+
         public void InsertFood(string tableName, Food food)
         {
             int foodID = food.FoodID;
@@ -47,6 +54,17 @@ namespace Telemeal.Model
             sqlite_cmd.ExecuteNonQuery();
         }
 
+        public void InsertEmployee(string tableName, Employee employee)
+        {
+            int employeeID = employee.ID;
+            string employeeName = employee.name;
+            string employeePosition = employee.position;
+            bool employeePrivilege = employee.privilege;
+            string cmd = $"INSERT INTO {tableName} (id, name, position, privilege) VALUES ({employeeID}, '{employeeName}', '{employeePosition}', '{employeePrivilege}')";
+            sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
+            sqlite_cmd.ExecuteNonQuery();
+        }
+
         public void DeleteTable(string name)
         {
             string cmd = $"DROP TABLE {name}";
@@ -54,7 +72,7 @@ namespace Telemeal.Model
             sqlite_cmd.ExecuteNonQuery();
         }
 
-        public SQLiteDataReader ViewFoodTable(string tableName)
+        public SQLiteDataReader ViewTable(string tableName)
         {
             string cmd = $"SELECT * FROM {tableName} order by id";
             sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
