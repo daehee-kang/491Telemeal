@@ -36,7 +36,7 @@ namespace Telemeal.Windows
             categories.Add(new Food() {SubCtgr = Sub_Category.Main });
             categories.Add(new Food() {SubCtgr = Sub_Category.Dessert });
 
-            SQLiteDataReader reader = conn.ViewFoodTable("Food");
+            SQLiteDataReader reader = conn.ViewTable("Food");
             while (reader.Read())
             {
                 foods.Add(new Food() { FoodID = ((int)reader["id"]), Name = ((string)reader["name"]), Price = ((double)reader["price"]),

@@ -27,6 +27,10 @@ namespace Telemeal.Windows
         private void Edit_Employee_Click(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
+            var employeeDB = new EmployeeDBTestWindow();
+            employeeDB.Closed += Window_Closed;
+            employeeDB.Show();
+            this.Hide();
         }
 
         private void Edit_Menu_Click(object sender, RoutedEventArgs e)
