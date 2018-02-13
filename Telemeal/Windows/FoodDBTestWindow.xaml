@@ -5,61 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Telemeal.Windows"
         mc:Ignorable="d"
-<<<<<<< HEAD
-        Title="FoodDBTestWindow" Height="600" Width="300">
-    <StackPanel>
-        <TextBlock>Give Table Name:</TextBlock>
-        <TextBox Name="TableName"></TextBox>
-        <Button Name="CreateTable" Click="CreateTable_Click">Create Table</Button>
-        <TextBlock>Insert Food:</TextBlock>
-        <Grid>
-            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintTableName">Table Name</TextBlock>
-            <TextBox TextAlignment="Right" Name="fTable" SelectionChanged="fTable_SelectionChanged"/>
-        </Grid>
-        <Grid>
-            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintFoodID">Food ID</TextBlock>
-            <TextBox TextAlignment="Right" Name="fID" SelectionChanged="fID_SelectionChanged"/>
-        </Grid>
-        <Grid>
-            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintFoodName">Food Name</TextBlock>
-            <TextBox TextAlignment="Right" Name="fName" SelectionChanged="fName_SelectionChanged"/>
-        </Grid>
-        <Grid>
-            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintFoodPrice">Price</TextBlock>
-            <TextBox TextAlignment="Right" Name="fPrice" SelectionChanged="fPrice_SelectionChanged"/>
-        </Grid>
-        <Grid>
-            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintFoodDesc">Description</TextBlock>
-            <TextBox TextAlignment="Right" Name="fDesc" SelectionChanged="fDesc_SelectionChanged"/>
-        </Grid>
-        <Grid>
-            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintFoodImg">Image Path</TextBlock>
-            <TextBox TextAlignment="Right" Name="fImg" SelectionChanged="fImg_SelectionChanged"/>
-        </Grid>
-        <Grid>
-            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintFoodCtgrMain">Main-Category</TextBlock>
-            <TextBox TextAlignment="Right" Name="fMain" SelectionChanged="fMain_SelectionChanged"/>
-        </Grid>
-        <Grid>
-            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintFoodCtgrSub">Sub-Category</TextBlock>
-            <TextBox TextAlignment="Right" Name="fSub" SelectionChanged="fSub_SelectionChanged"/>
-        </Grid>
-        <Button Name="AddFood" Click="AddFood_Click">Add Food</Button>
-        <TextBlock>View Your Database:</TextBlock>
-        <Grid>
-            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintViewTableName">Table Name</TextBlock>
-            <TextBox TextAlignment="Right" Name="viewTableName" SelectionChanged="viewTableName_SelectionChanged"/>
-        </Grid>
-        <TextBlock Name="ShowData"></TextBlock>
-        <Button Name="Generate" Click="Generate_Click">Generate</Button>
-        <Grid>
-            <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintTableDelete">Table Name</TextBlock>
-            <TextBox TextAlignment="Right" Name="NameDelete" SelectionChanged="NameDelete_SelectionChanged"/>
-        </Grid>
-        <Button Name="Delete" Click="Delete_Click">Delete Table</Button>
-    </StackPanel>
-=======
-        Title="FoodDBTestWindow" Height="500" Width="600">
+        Title="FoodDBTestWindow" Height="600" Width="600">
     <UniformGrid Rows="1" Columns="2" Background="Beige">
         <StackPanel Grid.Row="0" Grid.Column="0" Margin="10, 0">
             <TextBlock TextAlignment="Center" FontSize="30">Add Item</TextBlock>
@@ -118,5 +64,4 @@
             <Button Name="bDelete" Margin="10, 10" Click="bDelete_Click">Delete Item</Button>
         </StackPanel>
     </UniformGrid>
->>>>>>> daehee
 </Window>

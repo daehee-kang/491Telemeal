@@ -42,7 +42,7 @@ namespace Telemeal.Windows
             cbEditCategory.Items.Add(Sub_Category.Main);
             cbEditCategory.Items.Add(Sub_Category.Dessert);
 
-            SQLiteDataReader reader = conn.ViewFoodTable("Food");
+            SQLiteDataReader reader = conn.ViewTable("Food");
             while (reader.Read())
             {
                 IDataRecord record = reader as IDataRecord;
