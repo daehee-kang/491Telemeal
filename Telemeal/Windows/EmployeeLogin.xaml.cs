@@ -47,6 +47,7 @@ namespace Telemeal.Windows
             Button b = sender as Button;
             SQLiteDataReader reader = conn.ViewTable("Employee");
             bool key = false;
+            bool admin = false;
             while(reader.Read())
             {
                 ADMINID = ((int)reader["ID"]).ToString();
@@ -57,15 +58,26 @@ namespace Telemeal.Windows
                     //foodDB.Closed += Window_Closed;
                     //foodDB.Show();
                     key = true;
+                    admin = ((bool)reader["privilege"]);
                     break;
                 }
             }
             if(key)
             {
-                var manOption = new ManagerOptions();
-                manOption.Closed += Window_Closed;
-                manOption.Show();
-                this.Hide();
+                if(admin)
+                {
+                    var manOption = new ManagerOptions();
+                    manOption.Closed += Window_Closed;
+                    manOption.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    var foodDB = new FoodDBTestWindow();
+                    foodDB.Closed += Window_Closed;
+                    foodDB.Show();
+                    this.Hide();
+                }
             }
 
 
