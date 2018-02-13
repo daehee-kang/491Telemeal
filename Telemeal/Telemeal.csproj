@@ -111,6 +111,9 @@
     <Compile Include="Windows\PaypalPmt.xaml.cs">
       <DependentUpon>PaypalPmt.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ViewDB.xaml.cs">
+      <DependentUpon>ViewDB.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -173,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\PaypalPmt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ViewDB.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

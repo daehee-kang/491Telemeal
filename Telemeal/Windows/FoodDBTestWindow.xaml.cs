@@ -10,9 +10,14 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+//using System.Windows.Shapes;
 using Telemeal.Model;
 using System.Data.SQLite;
+using Microsoft.Win32;
+using System.IO;
+using System.Reflection;
+using System.Windows.Markup;
+using System.Data;
 
 namespace Telemeal.Windows
 {
@@ -22,34 +27,46 @@ namespace Telemeal.Windows
     public partial class FoodDBTestWindow : Window
     {
         dbConnection conn = new dbConnection();
+        List<Food> lFood = new List<Food>();
 
         public FoodDBTestWindow()
         {
             InitializeComponent();
-        }
+            cbAddCategory.Items.Add(Sub_Category.Drink);
+            cbAddCategory.Items.Add(Sub_Category.Appetizer);
+            cbAddCategory.Items.Add(Sub_Category.Main);
+            cbAddCategory.Items.Add(Sub_Category.Dessert);
 
-        private void CreateTable_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            string name = TableName.Text;
-            conn.CreateFoodTable(name);
-        }
+            cbEditCategory.Items.Add(Sub_Category.Drink);
+            cbEditCategory.Items.Add(Sub_Category.Appetizer);
+            cbEditCategory.Items.Add(Sub_Category.Main);
+            cbEditCategory.Items.Add(Sub_Category.Dessert);
 
-        private void AddFood_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            string tableName = fTable.Text;
-            Food food = new Food
+            SQLiteDataReader reader = conn.ViewFoodTable("Food");
+            while (reader.Read())
             {
-                FoodID = int.Parse(fID.Text),
-                Name = fName.Text,
-                Price = double.Parse(fPrice.Text),
-                Description = fDesc.Text,
-                Img = fImg.Text,
-                MainCtgr = (Main_Category)int.Parse(fMain.Text),
-                SubCtgr = (Sub_Category)int.Parse(fSub.Text)
-            };
-            conn.InsertFood(tableName, food);
+                IDataRecord record = reader as IDataRecord;
+                int id = (int)record[0];
+                string name = (string)record[1];
+                double price = (double)record[2];
+                string desc = (string)record[3];
+                string image = (string)record[4];
+                Main_Category main = (Main_Category)record[5];
+                Sub_Category sub = (Sub_Category)record[6];
+                Food food = new Food
+                {
+                    FoodID = id,
+                    Name = name,
+                    Price = price,
+                    Description = desc,
+                    Img = image,
+                    MainCtgr = main,
+                    SubCtgr = sub
+                };
+
+                lFood.Add(food);
+                cbEditFoodID.Items.Add(food.FoodID);
+            }
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -57,7 +74,7 @@ namespace Telemeal.Windows
             this.Close();
             conn.Close();
         }
-
+        /*
         private void Generate_Click(object sender, RoutedEventArgs e)
         {
             string name = viewTableName.Text;
@@ -73,95 +90,128 @@ namespace Telemeal.Windows
             Button b = sender as Button;
             conn.DeleteTable(NameDelete.Text);
         }
-
-        private void fTable_SelectionChanged(object sender, RoutedEventArgs e)
+        */
+        private void bAddFoodItem_Click(object sender, RoutedEventArgs e)
         {
-            hintTableName.Visibility = Visibility.Visible;
-            if (fTable.Text.Length > 0)
+            Button b = sender as Button;
+            string tableName = "Food";
+
+            int fID = int.Parse(tbAddNumber.Text);
+            string fName = tbAddName.Text;
+            double fPrice = double.Parse(tbAddPrice.Text);
+            string fDesc = tbAddDesc.Text;
+            string fImg = tbAddImage.Text;
+            Main_Category fMainCtgr = Main_Category.All;
+            Sub_Category fSubCtgr = (Sub_Category) Enum.Parse(typeof(Sub_Category), cbAddCategory.Text);
+
+            Food food = new Food
             {
-                hintTableName.Visibility = Visibility.Hidden;
+                FoodID = fID,
+                Name = fName,
+                Price = fPrice,
+                Description = fDesc,
+                Img = fImg,
+                MainCtgr = fMainCtgr,
+                SubCtgr = fSubCtgr
+            };
+            conn.InsertFood(tableName, food);
+        }
+
+        private void bAddImage_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            string imgFile = "";
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            ofd.InitialDirectory = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"../../"));
+            ofd.Filter = "PNG files (*.png)|*.png|JPEG files (*.jpeg)|*.jpeg|JPG files (*.jpg)|*.jpg|All files (*.*)|*.*";
+            ofd.FilterIndex = 4;
+            ofd.RestoreDirectory = true;
+
+            if (ofd.ShowDialog() == true)
+            {
+                try
+                {
+                    imgFile = ofd.FileName;
+                    tbAddImage.Text = imgFile;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                }
             }
         }
 
-        private void fID_SelectionChanged(object sender, RoutedEventArgs e)
+        private void bViewFoodItem_Click(object sender, RoutedEventArgs e)
         {
-            hintFoodID.Visibility = Visibility.Visible;
-            if (fID.Text.Length > 0)
+            Button b = sender as Button;
+            ViewDB viewDB = new ViewDB();
+            viewDB.Show();
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cBox = sender as ComboBox;
+            int id = int.Parse(cBox.SelectedItem.ToString());
+            Food food = lFood.Where(v => v.FoodID == id).First();
+            tbEditName.Text = food.Name;
+            tbEditPrice.Text = food.Price.ToString();
+            tbEditDesc.Text = food.Description;
+            tbEditImage.Text = food.Img;
+            cbEditCategory.Text = food.SubCtgr.ToString();
+        }
+
+        private void bEdit_Click(object sender, RoutedEventArgs e)
+        {
+            int id = (int)cbEditFoodID.SelectedValue;
+            string name = tbEditName.Text;
+            double price = double.Parse(tbEditPrice.Text);
+            string desc = tbEditDesc.Text;
+            string img = tbEditImage.Text;
+            Main_Category main = Main_Category.All;
+            Sub_Category sub = (Sub_Category)Enum.Parse(typeof(Sub_Category), cbEditCategory.Text);
+            Food food = new Food
             {
-                hintFoodID.Visibility = Visibility.Hidden;
+                FoodID = id,
+                Name = name,
+                Price = price,
+                Description = desc,
+                Img = img,
+                MainCtgr = main,
+                SubCtgr = sub
+            };
+            conn.UpdateFood("Food", food);
+        }
+
+        private void bEditImage_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            string imgFile = "";
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            ofd.InitialDirectory = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"../../"));
+            ofd.Filter = "PNG files (*.png)|*.png|JPEG files (*.jpeg)|*.jpeg|JPG files (*.jpg)|*.jpg|All files (*.*)|*.*";
+            ofd.FilterIndex = 4;
+            ofd.RestoreDirectory = true;
+
+            if (ofd.ShowDialog() == true)
+            {
+                try
+                {
+                    imgFile = ofd.FileName;
+                    tbEditImage.Text = imgFile;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                }
             }
         }
 
-        private void fName_SelectionChanged(object sender, RoutedEventArgs e)
+        private void bDelete_Click(object sender, RoutedEventArgs e)
         {
-            hintFoodName.Visibility = Visibility.Visible;
-            if (fName.Text.Length > 0)
-            {
-                hintFoodName.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void fPrice_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            hintFoodPrice.Visibility = Visibility.Visible;
-            if (fPrice.Text.Length > 0)
-            {
-                hintFoodPrice.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void fDesc_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            hintFoodDesc.Visibility = Visibility.Visible;
-            if (fDesc.Text.Length > 0)
-            {
-                hintFoodDesc.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void fImg_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            hintFoodImg.Visibility = Visibility.Visible;
-            if (fImg.Text.Length > 0)
-            {
-                hintFoodImg.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void fMain_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            hintFoodCtgrMain.Visibility = Visibility.Visible;
-            if (fMain.Text.Length > 0)
-            {
-                hintFoodCtgrMain.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void fSub_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            hintFoodCtgrSub.Visibility = Visibility.Visible;
-            if (fSub.Text.Length > 0)
-            {
-                hintFoodCtgrSub.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void viewTableName_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            hintViewTableName.Visibility = Visibility.Visible;
-            if (viewTableName.Text.Length > 0)
-            {
-                hintViewTableName.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void NameDelete_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            hintTableDelete.Visibility = Visibility.Visible;
-            if (NameDelete.Text.Length > 0)
-            {
-                hintTableDelete.Visibility = Visibility.Hidden;
-            }
+            int id = int.Parse(cbEditFoodID.Text);
+            conn.DeleteFoodByID("Food", id);
         }
     }
 }

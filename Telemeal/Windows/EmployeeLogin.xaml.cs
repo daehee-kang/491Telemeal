@@ -24,7 +24,6 @@ namespace Telemeal.Windows
         public EmployeeLogin()
         {
             InitializeComponent();
-            //EmployeeID.Password = "1234";
         }
 
         private void Num1_Click(object sender, RoutedEventArgs e)

@@ -47,6 +47,29 @@ namespace Telemeal.Model
             sqlite_cmd.ExecuteNonQuery();
         }
 
+        public void UpdateFood(string tableName, Food food) {
+            int foodID = food.FoodID;
+            string name = food.Name;
+            double price = food.Price;
+            string desc = food.Description;
+            string img = food.Img;
+            int mainCtr = (int)food.MainCtgr;
+            int subCtr = (int)food.SubCtgr;
+            string cmd = $"UPDATE {tableName} " +
+                $"SET name = '{name}', price = {price}, desc = '{desc}', img = '{img}', mainctgr = {mainCtr}, subctgr = {subCtr} " + 
+                $"WHERE id = {foodID}";
+            sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
+            sqlite_cmd.ExecuteNonQuery();
+        }
+
+        public void DeleteFoodByID(string tableName, int id)
+        {
+            string cmd = $"DELETE FROM {tableName} WHERE id = {id}";
+            sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
+            sqlite_cmd.ExecuteNonQuery();
+        }
+
+
         public void DeleteTable(string name)
         {
             string cmd = $"DROP TABLE {name}";
