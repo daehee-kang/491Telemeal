@@ -100,7 +100,7 @@ namespace Telemeal.Windows
             string fName = tbAddName.Text;
             double fPrice = double.Parse(tbAddPrice.Text);
             string fDesc = tbAddDesc.Text;
-            string fImg = tbAddImage.Text;
+            string fImg = TelemealPath(tbAddImage.Text);
             Main_Category fMainCtgr = Main_Category.All;
             Sub_Category fSubCtgr = (Sub_Category) Enum.Parse(typeof(Sub_Category), cbAddCategory.Text);
 
@@ -212,6 +212,39 @@ namespace Telemeal.Windows
         {
             int id = int.Parse(cbEditFoodID.Text);
             conn.DeleteFoodByID("Food", id);
+        }
+
+        private string TelemealPath(string path)
+        {
+            string relPath = "";
+            int counter = 0;
+            bool pathFound = false;
+            String[] split = path.Split('\\');
+
+            for (int i = 0; i < split.Length; i++)
+            {
+                if(split[i] == "Telemeal")
+                {
+                    counter = i;
+                    pathFound = true;
+                    break;
+                }
+            }
+
+            if(pathFound)
+            {
+                for (int i = counter; i < split.Length; i++)
+                {
+                    relPath += "/";
+                    relPath += split[i];
+                    if (i == counter)
+                    {
+                        relPath += ";component";
+                    }
+                }
+            }
+
+            return relPath;
         }
     }
 }
