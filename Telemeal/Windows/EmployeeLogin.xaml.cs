@@ -30,10 +30,7 @@ namespace Telemeal.Windows
         public EmployeeLogin()
         {
             InitializeComponent();
-<<<<<<< HEAD
-=======
             pw = EmployeeID.Password;
->>>>>>> master
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

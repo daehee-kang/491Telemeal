@@ -26,11 +26,7 @@ namespace Telemeal.Windows
         public ViewDB()
         {
             InitializeComponent();
-<<<<<<< HEAD
-            SQLiteDataReader reader = conn.ViewFoodTable("Food");
-=======
             SQLiteDataReader reader = conn.ViewTable("Food");
->>>>>>> master
             while (reader.Read())
             {
                 IDataRecord record = reader as IDataRecord;

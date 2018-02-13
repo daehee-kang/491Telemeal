@@ -54,8 +54,6 @@ namespace Telemeal.Model
             sqlite_cmd.ExecuteNonQuery();
         }
 
-<<<<<<< HEAD
-=======
         public void InsertEmployee(string tableName, Employee employee)
         {
             int employeeID = employee.ID;
@@ -67,7 +65,6 @@ namespace Telemeal.Model
             sqlite_cmd.ExecuteNonQuery();
         }
 
->>>>>>> master
         public void UpdateFood(string tableName, Food food) {
             int foodID = food.FoodID;
             string name = food.Name;
@@ -86,16 +83,10 @@ namespace Telemeal.Model
         public void DeleteFoodByID(string tableName, int id)
         {
             string cmd = $"DELETE FROM {tableName} WHERE id = {id}";
-<<<<<<< HEAD
             sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
             sqlite_cmd.ExecuteNonQuery();
         }
 
-
-=======
-        }
-
->>>>>>> master
         public void DeleteTable(string name)
         {
             string cmd = $"DROP TABLE {name}";
