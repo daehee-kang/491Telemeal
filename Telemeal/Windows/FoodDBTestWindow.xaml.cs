@@ -42,7 +42,11 @@ namespace Telemeal.Windows
             cbEditCategory.Items.Add(Sub_Category.Main);
             cbEditCategory.Items.Add(Sub_Category.Dessert);
 
+<<<<<<< HEAD
             SQLiteDataReader reader = conn.ViewFoodTable("Food");
+=======
+            SQLiteDataReader reader = conn.ViewTable("Food");
+>>>>>>> master
             while (reader.Read())
             {
                 IDataRecord record = reader as IDataRecord;
@@ -78,7 +82,7 @@ namespace Telemeal.Windows
         private void Generate_Click(object sender, RoutedEventArgs e)
         {
             string name = viewTableName.Text;
-            SQLiteDataReader reader = conn.ViewFoodTable(name);
+            SQLiteDataReader reader = conn.ViewTable(name);
             while (reader.Read())
             {
                 ShowData.Text += string.Format($"Name: {reader["name"]}, Price: {reader["price"]}, Desc: {reader["desc"]}\n");

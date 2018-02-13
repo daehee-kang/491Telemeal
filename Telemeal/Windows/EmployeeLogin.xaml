@@ -10,20 +10,11 @@
         <StackPanel>
             <TextBlock>Enter the ID Number:</TextBlock>
             <PasswordBox Name="EmployeeID" PasswordChar="*" PasswordChanged="EmployeeID_PasswordChanged"></PasswordBox>
-            <UniformGrid Rows="4" Columns="3" Name="NumPad">
-                <Button Grid.Row="0" Grid.Column="0" Click="Num1_Click">1</Button>
-                <Button Grid.Row="0" Grid.Column="1" Click="Num2_Click">2</Button>
-                <Button Grid.Row="0" Grid.Column="2" Click="Num3_Click">3</Button>
-                <Button Grid.Row="1" Grid.Column="0" Click="Num4_Click">4</Button>
-                <Button Grid.Row="1" Grid.Column="1" Click="Num5_Click">5</Button>
-                <Button Grid.Row="1" Grid.Column="2" Click="Num6_Click">6</Button>
-                <Button Grid.Row="2" Grid.Column="0" Click="Num7_Click">7</Button>
-                <Button Grid.Row="2" Grid.Column="1" Click="Num8_Click">8</Button>
-                <Button Grid.Row="2" Grid.Column="2" Click="Num9_Click">9</Button>
-                <Button Grid.Row="3" Grid.Column="0" Click="Back_Click">Back</Button>
-                <Button Grid.Row="3" Grid.Column="1" Click="Num0_Click">0</Button>
-                <Button Grid.Row="3" Grid.Column="2" Click="Enter_Click">Enter</Button>
-            </UniformGrid>
+            <TextBlock>Enter Employee Name:</TextBlock>
+            <TextBox Name="EmployeeName"></TextBox>
+            <Button Click="Enter_Click" Content="Enter"/>
+
+
         </StackPanel>
     </Viewbox>
 </Window>

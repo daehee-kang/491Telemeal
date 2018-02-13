@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Telemeal.Model;
 
 namespace Telemeal.Windows
 {
@@ -19,78 +21,68 @@ namespace Telemeal.Windows
     /// </summary>
     public partial class EmployeeLogin : Window
     {
-        private static string ADMINID = "1234";
+        private static string ADMINID = "";
+        private static string ADMINNAME = "";
         private StringBuilder id = new StringBuilder();
+        private string pw;
+        dbConnection conn = new dbConnection();
+
         public EmployeeLogin()
         {
             InitializeComponent();
+<<<<<<< HEAD
+=======
+            pw = EmployeeID.Password;
+>>>>>>> master
         }
 
-        private void Num1_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('1');
-        }
-        private void Num2_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('2');
-        }
-        private void Num3_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('3');
-        }
-        private void Num4_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('4');
-        }
-        private void Num5_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('5');
-        }
-        private void Num6_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('6');
-        }
-        private void Num7_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('7');
-        }
-        private void Num8_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('8');
-        }
-        private void Num9_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('9');
-        }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
-            id.Remove(id.Length-1, 1);
+            if (id.Length > 0)
+            {
+                id.Remove(id.Length - 1, 1);
+            }
         }
-        private void Num0_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('0');
-        }
+        
         private void Enter_Click(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
-            if(ADMINID.Equals(id.ToString()))
+            SQLiteDataReader reader = conn.ViewTable("Employee");
+            bool key = false;
+            while(reader.Read())
             {
-                var foodDB = new FoodDBTestWindow();
-                foodDB.Closed += Window_Closed;
-                foodDB.Show();
+                ADMINID = ((int)reader["ID"]).ToString();
+                ADMINNAME = ((string)reader["name"]);
+                if (EmployeeID.Password.Equals(ADMINID) && EmployeeName.Text.Equals(ADMINNAME))
+                {
+                    //var foodDB = new FoodDBTestWindow();
+                    //foodDB.Closed += Window_Closed;
+                    //foodDB.Show();
+                    key = true;
+                    break;
+                }
+            }
+            if(key)
+            {
+                var manOption = new ManagerOptions();
+                manOption.Closed += Window_Closed;
+                manOption.Show();
                 this.Hide();
             }
+
+
+            /*if (ADMINID.Equals(id.ToString()))
+            {
+                //var foodDB = new FoodDBTestWindow();
+                //foodDB.Closed += Window_Closed;
+                //foodDB.Show();
+
+                var manOption = new ManagerOptions();
+                manOption.Closed += Window_Closed;
+                manOption.Show();
+                this.Hide();
+            }*/
         }
         private void Window_Closed(object sender, EventArgs e)
         {
@@ -101,5 +93,7 @@ namespace Telemeal.Windows
         {
             
         }
+
+       
     }
 }

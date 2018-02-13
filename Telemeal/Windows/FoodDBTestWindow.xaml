@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Telemeal.Windows"
         mc:Ignorable="d"
+<<<<<<< HEAD
         Title="FoodDBTestWindow" Height="500" Width="600">
+=======
+        Title="FoodDBTestWindow" Height="600" Width="600">
+>>>>>>> master
     <UniformGrid Rows="1" Columns="2" Background="Beige">
         <StackPanel Grid.Row="0" Grid.Column="0" Margin="10, 0">
             <TextBlock TextAlignment="Center" FontSize="30">Add Item</TextBlock>
