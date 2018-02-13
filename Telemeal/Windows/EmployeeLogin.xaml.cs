@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Telemeal.Model;
 
 namespace Telemeal.Windows
 {
@@ -19,18 +21,18 @@ namespace Telemeal.Windows
     /// </summary>
     public partial class EmployeeLogin : Window
     {
-        private static string ADMINID = "1234";
-        private static string ADMINNAME = "Bryan Duong";
+        private static string ADMINID = "";
+        private static string ADMINNAME = "";
         private StringBuilder id = new StringBuilder();
         private string pw;
+        dbConnection conn = new dbConnection();
+
         public EmployeeLogin()
         {
             InitializeComponent();
             //EmployeeID.Password = "1234";
             pw = EmployeeID.Password;
         }
-
-        
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
@@ -44,12 +46,23 @@ namespace Telemeal.Windows
         private void Enter_Click(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
-            if (EmployeeID.Password == ADMINID && EmployeeName.Text == ADMINNAME)
+            SQLiteDataReader reader = conn.ViewTable("Employee");
+            bool key = false;
+            while(reader.Read())
             {
-                //var foodDB = new FoodDBTestWindow();
-                //foodDB.Closed += Window_Closed;
-                //foodDB.Show();
-
+                ADMINID = ((int)reader["ID"]).ToString();
+                ADMINNAME = ((string)reader["name"]);
+                if (EmployeeID.Password.Equals(ADMINID) && EmployeeName.Text.Equals(ADMINNAME))
+                {
+                    //var foodDB = new FoodDBTestWindow();
+                    //foodDB.Closed += Window_Closed;
+                    //foodDB.Show();
+                    key = true;
+                    break;
+                }
+            }
+            if(key)
+            {
                 var manOption = new ManagerOptions();
                 manOption.Closed += Window_Closed;
                 manOption.Show();
