@@ -26,8 +26,11 @@ namespace Telemeal.Windows
         public EmployeeLogin()
         {
             InitializeComponent();
+<<<<<<< HEAD
             //EmployeeID.Password = "1234";
             pw = EmployeeID.Password;
+=======
+>>>>>>> daehee
         }
 
         

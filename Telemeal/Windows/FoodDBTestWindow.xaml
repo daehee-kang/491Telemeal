@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Telemeal.Windows"
         mc:Ignorable="d"
+<<<<<<< HEAD
         Title="FoodDBTestWindow" Height="600" Width="300">
     <StackPanel>
         <TextBlock>Give Table Name:</TextBlock>
@@ -57,4 +58,65 @@
         </Grid>
         <Button Name="Delete" Click="Delete_Click">Delete Table</Button>
     </StackPanel>
+=======
+        Title="FoodDBTestWindow" Height="500" Width="600">
+    <UniformGrid Rows="1" Columns="2" Background="Beige">
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="10, 0">
+            <TextBlock TextAlignment="Center" FontSize="30">Add Item</TextBlock>
+            <WrapPanel>
+                <TextBlock HorizontalAlignment="Left" Width="150" FontSize="20">Food ID Number:</TextBlock>
+                <TextBox Name="tbAddNumber" HorizontalAlignment="Right" FontSize="20" Width="120"></TextBox>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock HorizontalAlignment="Left" Width="150" FontSize="20">Food Name:</TextBlock>
+                <TextBox Name="tbAddName" HorizontalAlignment="Right" FontSize="20" Width="120"></TextBox>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock HorizontalAlignment="Left" Width="150" FontSize="20">Price:</TextBlock>
+                <TextBox Name="tbAddPrice" HorizontalAlignment="Right" FontSize="20" Width="120"></TextBox>
+            </WrapPanel>
+            <TextBlock FontSize="20">Description:</TextBlock>
+            <TextBox Name="tbAddDesc" FontSize="20" Height="90" TextWrapping="Wrap"></TextBox>
+            <TextBlock FontSize="20">Image Path:</TextBlock>
+            <WrapPanel>
+                <TextBox Name="tbAddImage" HorizontalAlignment="Left" FontSize="20" Width="180"></TextBox>
+                <Button Name="bAddImage" Width="90" Click="bAddImage_Click">Browse</Button>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock HorizontalAlignment="Left" FontSize="20">Category:</TextBlock>
+                <ComboBox Name="cbAddCategory" FontSize="20" HorizontalAlignment="Right" Width="180"></ComboBox>
+            </WrapPanel>
+            <Button Name="bAddFoodItem" Margin="10, 10" Click="bAddFoodItem_Click">Add Food Item</Button>
+            <Button Name="bViewFoodItem" Margin="10, 10" Click="bViewFoodItem_Click">View Food Item</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="10, 0">
+            <TextBlock TextAlignment="Center" FontSize="30">Update Item</TextBlock>
+            <WrapPanel>
+                <TextBlock HorizontalAlignment="Left" Width="150" FontSize="20">Food ID Number:</TextBlock>
+                <ComboBox Name="cbEditFoodID" HorizontalAlignment="Right" FontSize="20" Width="120" SelectionChanged="ComboBox_SelectionChanged"></ComboBox>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock HorizontalAlignment="Left" Width="150" FontSize="20">Food Name:</TextBlock>
+                <TextBox Name="tbEditName" HorizontalAlignment="Right" FontSize="20" Width="120"></TextBox>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock HorizontalAlignment="Left" Width="150" FontSize="20">Price:</TextBlock>
+                <TextBox Name="tbEditPrice" HorizontalAlignment="Right" FontSize="20" Width="120"></TextBox>
+            </WrapPanel>
+            <TextBlock FontSize="20">Description:</TextBlock>
+            <TextBox Name="tbEditDesc" FontSize="20" Height="90" TextWrapping="Wrap"></TextBox>
+            <TextBlock FontSize="20">Image Path:</TextBlock>
+            <WrapPanel>
+                <TextBox Name="tbEditImage" HorizontalAlignment="Left" FontSize="20" Width="180"></TextBox>
+                <Button Name="bEditImage" Width="90" Click="bEditImage_Click">Browse</Button>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock HorizontalAlignment="Left" FontSize="20">Category:</TextBlock>
+                <ComboBox Name="cbEditCategory" FontSize="20" HorizontalAlignment="Right" Width="180"></ComboBox>
+            </WrapPanel>
+            <Button Name="bEdit" Margin="10, 10" Click="bEdit_Click">Edit Item</Button>
+            <Button Name="bDelete" Margin="10, 10" Click="bDelete_Click">Delete Item</Button>
+        </StackPanel>
+    </UniformGrid>
+>>>>>>> daehee
 </Window>
