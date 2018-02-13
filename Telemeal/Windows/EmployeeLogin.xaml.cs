@@ -20,6 +20,7 @@ namespace Telemeal.Windows
     public partial class EmployeeLogin : Window
     {
         private static string ADMINID = "1234";
+        private static string ADMINNAME = "Bryan Duong";
         private StringBuilder id = new StringBuilder();
         private string pw;
         public EmployeeLogin()
@@ -29,53 +30,8 @@ namespace Telemeal.Windows
             pw = EmployeeID.Password;
         }
 
-        private void Num1_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('1');
-            pw += '1';
+        
 
-        }
-        private void Num2_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('2');
-        }
-        private void Num3_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('3');
-        }
-        private void Num4_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('4');
-        }
-        private void Num5_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('5');
-        }
-        private void Num6_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('6');
-        }
-        private void Num7_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('7');
-        }
-        private void Num8_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('8');
-        }
-        private void Num9_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('9');
-        }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
@@ -84,15 +40,11 @@ namespace Telemeal.Windows
                 id.Remove(id.Length - 1, 1);
             }
         }
-        private void Num0_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            id.Append('0');
-        }
+        
         private void Enter_Click(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
-            if(ADMINID.Equals(id.ToString()))
+            if (EmployeeID.Password == ADMINID && EmployeeName.Text == ADMINNAME)
             {
                 //var foodDB = new FoodDBTestWindow();
                 //foodDB.Closed += Window_Closed;
@@ -103,6 +55,19 @@ namespace Telemeal.Windows
                 manOption.Show();
                 this.Hide();
             }
+
+
+            /*if (ADMINID.Equals(id.ToString()))
+            {
+                //var foodDB = new FoodDBTestWindow();
+                //foodDB.Closed += Window_Closed;
+                //foodDB.Show();
+
+                var manOption = new ManagerOptions();
+                manOption.Closed += Window_Closed;
+                manOption.Show();
+                this.Hide();
+            }*/
         }
         private void Window_Closed(object sender, EventArgs e)
         {
@@ -113,5 +78,7 @@ namespace Telemeal.Windows
         {
             
         }
+
+       
     }
 }

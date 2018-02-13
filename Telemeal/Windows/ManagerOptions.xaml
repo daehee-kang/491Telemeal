@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ManagerOptions" Height="242.828" Width="303.073">
     <Grid RenderTransformOrigin="0.502,0.462" Margin="0,0,2,1">
-        <Button Name="EditEmployee" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top" Width="126" Height="177" Click="Edit_Employee_Click" Content="Edit Employee"/>
+        <Button Name="EditEmployee" HorizontalAlignment="Left" Margin="15,16,0,0" VerticalAlignment="Top" Width="126" Height="177" Click="Edit_Employee_Click" Content="Edit Employee"/>
         <Button Name="EditMenu" HorizontalAlignment="Left" Margin="163,16,0,0" VerticalAlignment="Top" Width="120" Height="177" Click="Edit_Menu_Click" Content="Edit Menu"/>
 
     </Grid>
