@@ -115,6 +115,8 @@ namespace Telemeal.Windows
                 SubCtgr = fSubCtgr
             };
             conn.InsertFood(tableName, food);
+            lFood.Add(food);
+            cbEditFoodID.Items.Add(food.FoodID);
         }
 
         private void bAddImage_Click(object sender, RoutedEventArgs e)
@@ -167,7 +169,7 @@ namespace Telemeal.Windows
             string name = tbEditName.Text;
             double price = double.Parse(tbEditPrice.Text);
             string desc = tbEditDesc.Text;
-            string img = tbEditImage.Text;
+            string img = TelemealPath(tbEditImage.Text);
             Main_Category main = Main_Category.All;
             Sub_Category sub = (Sub_Category)Enum.Parse(typeof(Sub_Category), cbEditCategory.Text);
             Food food = new Food
