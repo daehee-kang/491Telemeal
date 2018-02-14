@@ -102,8 +102,9 @@ namespace Telemeal.Model
 
         public void DeleteFoodByID(string tableName, int id)
         {
-            string cmd = $"DELETE FROM {tableName} WHERE id = {id}";
+            string cmd = $"DELETE FROM {tableName} WHERE id = @id";
             sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
+            sqlite_cmd.Parameters.AddWithValue("@foodID", id);
             sqlite_cmd.ExecuteNonQuery();
         }
 
