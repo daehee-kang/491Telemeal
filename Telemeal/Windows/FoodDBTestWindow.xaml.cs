@@ -225,10 +225,11 @@ namespace Telemeal.Windows
         private void bDelete_Click(object sender, RoutedEventArgs e)
         {
             int id = int.Parse(cbEditFoodID.Text);
+            Food removedFood = lFood.Find(item => item.FoodID == id);
             conn.DeleteFoodByID("Food", id);
             cbEditFoodID.Text = "-1";
-            lFood.RemoveAt(id - 1);
-            cbEditFoodID.Items.RemoveAt(id - 1);
+            lFood.Remove(removedFood);
+            cbEditFoodID.Items.Remove(removedFood.FoodID);
         }
 
         private string TelemealPath(string path)
