@@ -49,8 +49,16 @@ namespace Telemeal.Model
             string img = food.Img;
             int mainCtr = (int) food.MainCtgr;
             int subCtr = (int) food.SubCtgr;
-            string cmd = $"INSERT INTO {tableName} (id, name, price, desc, img, mainctgr, subctgr) VALUES ({foodID}, '{name}', {price}, '{desc}', '{img}', {mainCtr}, {subCtr})";
+            //string cmd = $"INSERT INTO {tableName} (id, name, price, desc, img, mainctgr, subctgr) VALUES ({foodID}, '{name}', {price}, '{desc}', '{img}', {mainCtr}, {subCtr})";
+            string cmd = $"INSERT INTO {tableName} (id, name, price, desc, img, mainctgr, subctgr) VALUES (@foodID, @name, @price, @desc, @img, @mainCtr, @subCtr)";
             sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
+            sqlite_cmd.Parameters.AddWithValue("@foodID", foodID);
+            sqlite_cmd.Parameters.AddWithValue("@name", name);
+            sqlite_cmd.Parameters.AddWithValue("@price", price);
+            sqlite_cmd.Parameters.AddWithValue("@desc", desc);
+            sqlite_cmd.Parameters.AddWithValue("@img", img);
+            sqlite_cmd.Parameters.AddWithValue("@mainCtr", mainCtr);
+            sqlite_cmd.Parameters.AddWithValue("@subCtr", subCtr);
             sqlite_cmd.ExecuteNonQuery();
         }
 
@@ -73,10 +81,22 @@ namespace Telemeal.Model
             string img = food.Img;
             int mainCtr = (int)food.MainCtgr;
             int subCtr = (int)food.SubCtgr;
+            /**
             string cmd = $"UPDATE {tableName} " +
                 $"SET name = '{name}', price = {price}, desc = '{desc}', img = '{img}', mainctgr = {mainCtr}, subctgr = {subCtr} " + 
-                $"WHERE id = {foodID}";
+                $"WHERE id = {foodID}";*/
+            
+            string cmd = $"UPDATE {tableName} " +
+                $"SET name = @name, price = @price, desc = @desc, img = @img, mainctgr = @mainCtr, subctgr = @subCtr " +
+                $"WHERE id = @foodID";
             sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
+            sqlite_cmd.Parameters.AddWithValue("@foodID", foodID);
+            sqlite_cmd.Parameters.AddWithValue("@name", name);
+            sqlite_cmd.Parameters.AddWithValue("@price", price);
+            sqlite_cmd.Parameters.AddWithValue("@desc", desc);
+            sqlite_cmd.Parameters.AddWithValue("@img", img);
+            sqlite_cmd.Parameters.AddWithValue("@mainCtr", mainCtr);
+            sqlite_cmd.Parameters.AddWithValue("@subCtr", subCtr);
             sqlite_cmd.ExecuteNonQuery();
         }
 

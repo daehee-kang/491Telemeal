@@ -26,11 +26,12 @@ namespace Telemeal.Windows
         double tax = 0.1;
         double total = 0;
 
-        dbConnection conn = new dbConnection();
         public OrderPage()
         {
             InitializeComponent();
             List<Food> categories = new List<Food>();
+            dbConnection conn = new dbConnection();
+
             categories.Add(new Food() {SubCtgr = Sub_Category.Drink });
             categories.Add(new Food() {SubCtgr = Sub_Category.Appetizer });
             categories.Add(new Food() {SubCtgr = Sub_Category.Main });
@@ -69,6 +70,7 @@ namespace Telemeal.Windows
             Menu.ItemsSource = foods;
             Menu.DisplayMemberPath = "Name"; 
             */
+            conn.Close();
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -215,7 +217,7 @@ namespace Telemeal.Windows
 
             Image image = new Image
             {
-                Source = new BitmapImage(new Uri(f.Img, UriKind.Relative))
+                Source = new BitmapImage(new Uri(f.Img, UriKind.RelativeOrAbsolute))
             };
             image.Stretch = Stretch.Fill;
             Grid.SetColumn(image, 0);

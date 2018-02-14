@@ -25,7 +25,6 @@ namespace Telemeal.Windows
         private static string ADMINNAME = "";
         private StringBuilder id = new StringBuilder();
         private string pw;
-        dbConnection conn = new dbConnection();
 
         public EmployeeLogin()
         {
@@ -44,6 +43,7 @@ namespace Telemeal.Windows
         
         private void Enter_Click(object sender, RoutedEventArgs e)
         {
+            dbConnection conn = new dbConnection();
             Button b = sender as Button;
             SQLiteDataReader reader = conn.ViewTable("Employee");
             bool key = false;
@@ -62,6 +62,7 @@ namespace Telemeal.Windows
                     break;
                 }
             }
+            conn.Close();
             if(key)
             {
                 if(admin)
