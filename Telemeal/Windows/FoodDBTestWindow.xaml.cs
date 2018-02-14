@@ -67,6 +67,7 @@ namespace Telemeal.Windows
                 lFood.Add(food);
                 cbEditFoodID.Items.Add(food.FoodID);
             }
+            reader.Close();
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -74,23 +75,7 @@ namespace Telemeal.Windows
             this.Close();
             conn.Close();
         }
-        /*
-        private void Generate_Click(object sender, RoutedEventArgs e)
-        {
-            string name = viewTableName.Text;
-            SQLiteDataReader reader = conn.ViewTable(name);
-            while (reader.Read())
-            {
-                ShowData.Text += string.Format($"Name: {reader["name"]}, Price: {reader["price"]}, Desc: {reader["desc"]}\n");
-            }
-        }
 
-        private void Delete_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            conn.DeleteTable(NameDelete.Text);
-        }
-        */
         private void bAddFoodItem_Click(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
