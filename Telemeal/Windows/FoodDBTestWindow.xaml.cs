@@ -154,13 +154,25 @@ namespace Telemeal.Windows
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox cBox = sender as ComboBox;
-            int id = int.Parse(cBox.SelectedItem.ToString());
-            Food food = lFood.Where(v => v.FoodID == id).First();
-            tbEditName.Text = food.Name;
-            tbEditPrice.Text = food.Price.ToString();
-            tbEditDesc.Text = food.Description;
-            tbEditImage.Text = food.Img;
-            cbEditCategory.Text = food.SubCtgr.ToString();
+            if (cbEditFoodID.Text == "-1") 
+            {
+                cbEditFoodID.Text = "";
+                tbEditName.Text = "";
+                tbEditPrice.Text = "";
+                tbEditDesc.Text = "";
+                tbEditImage.Text = "";
+                cbEditCategory.Text = "";
+            }
+            else
+            {
+                int id = int.Parse(cBox.SelectedItem.ToString());
+                Food food = lFood.Where(v => v.FoodID == id).First();
+                tbEditName.Text = food.Name;
+                tbEditPrice.Text = food.Price.ToString();
+                tbEditDesc.Text = food.Description;
+                tbEditImage.Text = food.Img;
+                cbEditCategory.Text = food.SubCtgr.ToString();
+            }
         }
 
         private void bEdit_Click(object sender, RoutedEventArgs e)
@@ -214,6 +226,9 @@ namespace Telemeal.Windows
         {
             int id = int.Parse(cbEditFoodID.Text);
             conn.DeleteFoodByID("Food", id);
+            cbEditFoodID.Text = "-1";
+            lFood.RemoveAt(id - 1);
+            cbEditFoodID.Items.RemoveAt(id - 1);
         }
 
         private string TelemealPath(string path)
@@ -225,7 +240,7 @@ namespace Telemeal.Windows
 
             for (int i = 0; i < split.Length; i++)
             {
-                if(split[i] == "Telemeal")
+                if(split[i] == "Telemeal" || split[i] == "Telemeal;component")
                 {
                     counter = i;
                     pathFound = true;
@@ -235,13 +250,24 @@ namespace Telemeal.Windows
 
             if(pathFound)
             {
-                for (int i = counter; i < split.Length; i++)
+                if(split[counter] != "Telemeal;component")
                 {
-                    relPath += "/";
-                    relPath += split[i];
-                    if (i == counter)
+                    for (int i = counter; i < split.Length; i++)
                     {
-                        relPath += ";component";
+                        relPath += "/";
+                        relPath += split[i];
+                        if (i == counter)
+                        {
+                            relPath += ";component";
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = counter; i < split.Length; i++)
+                    {
+                        relPath += "/";
+                        relPath += split[i];
                     }
                 }
             }
