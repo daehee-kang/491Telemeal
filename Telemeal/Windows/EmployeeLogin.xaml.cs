@@ -97,7 +97,6 @@ namespace Telemeal.Windows
         private void Window_Closed(object sender, EventArgs e)
         {
             this.Show();
-            conn.Close();
         }
 
         private void EmployeeID_PasswordChanged(object sender, RoutedEventArgs e)

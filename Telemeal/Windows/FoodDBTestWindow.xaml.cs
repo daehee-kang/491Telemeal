@@ -42,6 +42,11 @@ namespace Telemeal.Windows
             cbEditCategory.Items.Add(Sub_Category.Main);
             cbEditCategory.Items.Add(Sub_Category.Dessert);
 
+            PopulateCBEditFoodID();
+        }
+
+        private void PopulateCBEditFoodID()
+        {
             SQLiteDataReader reader = conn.ViewTable("Food");
             while (reader.Read())
             {
@@ -139,13 +144,17 @@ namespace Telemeal.Windows
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox cBox = sender as ComboBox;
-            int id = int.Parse(cBox.SelectedItem.ToString());
-            Food food = lFood.Where(v => v.FoodID == id).First();
-            tbEditName.Text = food.Name;
-            tbEditPrice.Text = food.Price.ToString();
-            tbEditDesc.Text = food.Description;
-            tbEditImage.Text = food.Img;
-            cbEditCategory.Text = food.SubCtgr.ToString();
+            int id = 0;
+            if (cBox.SelectedIndex != -1)
+            {
+                id = int.Parse(cBox.SelectedItem.ToString());
+                Food food = lFood.Where(v => v.FoodID == id).First();
+                tbEditName.Text = food.Name;
+                tbEditPrice.Text = food.Price.ToString();
+                tbEditDesc.Text = food.Description;
+                tbEditImage.Text = food.Img;
+                cbEditCategory.Text = food.SubCtgr.ToString();
+            }
         }
 
         private void bEdit_Click(object sender, RoutedEventArgs e)
@@ -199,6 +208,17 @@ namespace Telemeal.Windows
         {
             int id = int.Parse(cbEditFoodID.Text);
             conn.DeleteFoodByID("Food", id);
+            cbEditFoodID.SelectedIndex = -1;
+            tbEditName.Clear();
+            tbEditImage.Clear();
+            tbEditDesc.Clear();
+            tbEditPrice.Clear();
+            cbEditCategory.SelectedIndex = -1;
+
+            cbEditFoodID.Items.Clear();
+            lFood.Clear();
+
+            PopulateCBEditFoodID();
         }
 
         private string TelemealPath(string path)
