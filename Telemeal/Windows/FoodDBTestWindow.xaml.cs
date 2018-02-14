@@ -254,7 +254,7 @@ namespace Telemeal.Windows
                 {
                     for (int i = counter; i < split.Length; i++)
                     {
-                        relPath += "/";
+                        relPath += "\\";
                         relPath += split[i];
                         if (i == counter)
                         {
@@ -266,7 +266,7 @@ namespace Telemeal.Windows
                 {
                     for (int i = counter; i < split.Length; i++)
                     {
-                        relPath += "/";
+                        relPath += "\\";
                         relPath += split[i];
                     }
                 }
