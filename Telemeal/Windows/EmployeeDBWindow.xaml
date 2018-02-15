@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Telemeal.Windows"
         mc:Ignorable="d"
-        Title="EmployeeDBTestWindow" Height="500" Width="300">
+        Title="EmployeeDBTestWindow" Height="500" Width="300" WindowState="Maximized">
     <StackPanel>
         <TextBlock>Give Table Name:</TextBlock>
         <TextBox Name="TableName"></TextBox>

@@ -204,14 +204,13 @@ namespace Telemeal.Windows
             Grid grid = new Grid();
             grid.Tag = f.FoodID;
             grid.Height = 100;
-            grid.ShowGridLines = true;
             grid.Background = new SolidColorBrush(Colors.AntiqueWhite);
             grid.MouseDown += new MouseButtonEventHandler(FoodClick);
 
             ColumnDefinition gridCol1 = new ColumnDefinition();
             ColumnDefinition gridCol2 = new ColumnDefinition();
-            gridCol1.Width = new GridLength(3, GridUnitType.Star);
-            gridCol2.Width = new GridLength(8, GridUnitType.Star);
+            gridCol1.Width = new GridLength(100, GridUnitType.Pixel);
+            gridCol2.Width = new GridLength(525, GridUnitType.Pixel);
             grid.ColumnDefinitions.Add(gridCol1);
             grid.ColumnDefinitions.Add(gridCol2);
 

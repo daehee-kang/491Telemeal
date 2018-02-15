@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Telemeal.Windows"
         mc:Ignorable="d"
-        Title="PaymentOptions" Height="400" Width="700"
+        Title="PaymentOptions" Height="400" Width="700" WindowState="Maximized"
         
          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -15,23 +15,22 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
-    <DockPanel>
-        <Border BorderBrush="Black" BorderThickness="1.0" DockPanel.Dock="Right">
-            <ListView Name="Cart" Width="150" DockPanel.Dock="Right"></ListView>
-        </Border>
-        <StackPanel DockPanel.Dock="Top" Height="30" Margin="0,0,462,0">
-            <Button x:Name="Menu" Content="Menu" d:LayoutOverrides="Height" Click="Menu_Click"/>
-        </StackPanel>
-        <StackPanel Height="150" DockPanel.Dock="Top" HorizontalAlignment="Right" Width="540">
-            
-                <TextBlock HorizontalAlignment="Center" FontSize="36" Margin="0,50,0,0">SubTotal:</TextBlock>
-            <TextBlock Name="AmountDue" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold" Margin="169,0,169,100"></TextBlock>
-        </StackPanel>
-        <UniformGrid Rows="2" Columns="2">
-            <Button Name="Cash" Click="Cash_Click" Margin="0,30,0,12" Width="130" Height="60">Cash</Button>
-            <Button Name="Paypal" Click="Paypal_Click" Height="60" Margin="0,30,0,12" Width="130">Paypal</Button>
-            <Button Name="CreditCard" Click="CreditCard_Click" Height="60" Margin="0,2,0,39" Width="130">Credit/Debit</Button>
-            <Button Name="Coupon" Click="Coupon_Click" Height="60" Margin="0,2,0,39" Width="130">Coupon</Button>
-        </UniformGrid>
-    </DockPanel>
+    <Viewbox>
+        <DockPanel>
+            <Border BorderBrush="Black" BorderThickness="1.0" DockPanel.Dock="Right">
+                <ListView Name="Cart" Width="150" DockPanel.Dock="Right"></ListView>
+            </Border>
+            <StackPanel DockPanel.Dock="Top" Height="30" Width="100" HorizontalAlignment="Left">
+                <Button x:Name="Menu" Content="Menu" d:LayoutOverrides="Height" Click="Menu_Click"/>
+            </StackPanel>
+            <StackPanel Height="150" DockPanel.Dock="Top" HorizontalAlignment="Center" Width="540">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Margin="0, 30, 0, 0">SubTotal:</TextBlock>
+                <TextBlock Name="AmountDue" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" FontWeight="Bold"></TextBlock>
+            </StackPanel>
+            <UniformGrid Rows="2" Columns="2">
+                <Button Name="Cash" Click="Cash_Click" Width="130" Height="100">Cash</Button>
+                <Button Name="Paypal" Click="Paypal_Click" Height="100" Width="130">Paypal</Button>
+            </UniformGrid>
+        </DockPanel>
+    </Viewbox>
 </Window>

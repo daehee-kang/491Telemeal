@@ -89,23 +89,17 @@
     <Compile Include="Model\dbConnection.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\Food.cs" />
-    <Compile Include="Windows\CardPmt.xaml.cs">
-      <DependentUpon>CardPmt.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\CashPmt.xaml.cs">
       <DependentUpon>CashPmt.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Coupon.xaml.cs">
-      <DependentUpon>Coupon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\EmployeeDBTestWindow.xaml.cs">
-      <DependentUpon>EmployeeDBTestWindow.xaml</DependentUpon>
+    <Compile Include="Windows\EmployeeDBWindow.xaml.cs">
+      <DependentUpon>EmployeeDBWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\EmployeeLogin.xaml.cs">
       <DependentUpon>EmployeeLogin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\FoodDBTestWindow.xaml.cs">
-      <DependentUpon>FoodDBTestWindow.xaml</DependentUpon>
+    <Compile Include="Windows\FoodDBWindow.xaml.cs">
+      <DependentUpon>FoodDBWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\LogIn.xaml.cs">
       <DependentUpon>LogIn.xaml</DependentUpon>
@@ -154,19 +148,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Windows\CardPmt.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Windows\CashPmt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Coupon.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\EmployeeDBTestWindow.xaml">
+    <Page Include="Windows\EmployeeDBWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,7 +160,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\FoodDBTestWindow.xaml">
+    <Page Include="Windows\FoodDBWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

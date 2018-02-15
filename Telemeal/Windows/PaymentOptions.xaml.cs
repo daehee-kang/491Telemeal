@@ -83,24 +83,6 @@ namespace Telemeal.Windows
             this.Hide();
         }
 
-        private void CreditCard_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            var ccpmt = new CardPmt();
-            ccpmt.Closed += Window_Closed;
-            ccpmt.Show();
-            this.Hide();
-        }
-
-        private void Coupon_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            var cpn = new Coupon();
-            cpn.Closed += Window_Closed;
-            cpn.Show();
-            this.Hide();
-        }
-
         private void Window_Closed(object sender, EventArgs e)
         {
             this.Show();

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Telemeal.Windows"
         mc:Ignorable="d"
-        Title="ViewDB" Height="300" Width="300">
+        Title="ViewDB" Height="300" Width="300" WindowState="Maximized">
     <ScrollViewer>
         <StackPanel>
             <TextBlock Name="tbDataView" TextWrapping="Wrap"></TextBlock>
