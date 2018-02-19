@@ -89,6 +89,7 @@
     <Compile Include="Model\dbConnection.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\Food.cs" />
+    <Compile Include="Model\TMException.cs" />
     <Compile Include="Windows\CashPmt.xaml.cs">
       <DependentUpon>CashPmt.xaml</DependentUpon>
     </Compile>

@@ -28,14 +28,25 @@ namespace Telemeal.Model
 
         public void CreateFoodTable(string tableName)
         {
-            string cmd = $"CREATE TABLE {tableName} (id INT, name VARCHAR(50), price DOUBLE, desc VARCHAR(200), img VARCHAR(100), mainctgr INT, subctgr INT)";
+            string cmd = $"CREATE TABLE {tableName} " +
+                $"(id INT PRIMARY KEY AUTOINCREMENT, " +
+                $"name VARCHAR(50) NOT NULL, " +
+                $"price DOUBLE NOT NULL, " +
+                $"desc VARCHAR(200), " +
+                $"img VARCHAR(100), " +
+                $"mainctgr INT, " +
+                $"subctgr INT NOT NULL)";
             sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
             sqlite_cmd.ExecuteNonQuery();
         }
 
         public void CreateEmployeeTable(string tableName)
         {
-            string cmd = $"CREATE TABLE {tableName} (id INT, name VARCHAR(50), position VARCHAR(50), privilege BOOL)";
+            string cmd = $"CREATE TABLE {tableName} " +
+                $"(id INT PRIMERY KEY AUTOINCREMENT, " +
+                $"name VARCHAR(50) NOT NULL, " +
+                $"position VARCHAR(50), " +
+                $"privilege BOOL)";
             sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
             sqlite_cmd.ExecuteNonQuery();
         }
@@ -103,6 +114,13 @@ namespace Telemeal.Model
         public void DeleteFoodByID(string tableName, int id)
         {
             string cmd = $"DELETE FROM {tableName} WHERE id = {id}";
+            sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
+            sqlite_cmd.ExecuteNonQuery();
+        }
+
+        public void DeleteFoodByName(string tableName, String name)
+        {
+            string cmd = $"DELETE FROM {tableName} WHERE name = '{name}'";
             sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
             sqlite_cmd.ExecuteNonQuery();
         }
