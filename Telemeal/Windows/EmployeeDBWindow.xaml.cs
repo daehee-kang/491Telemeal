@@ -24,20 +24,13 @@ namespace Telemeal.Windows
         dbConnection conn = new dbConnection();
         public EmployeeDBTestWindow()
         {
+            //conn.CreateEmployeeTable();
             InitializeComponent();
-        }
-
-        private void CreateTable_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            string name = TableName.Text;
-            conn.CreateEmployeeTable(name);
         }
 
         private void AddEmployee_Click(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
-            string tableName = eTable.Text;
             Employee employee = new Employee
             {
                 ID = int.Parse(eID.Text),
@@ -45,7 +38,7 @@ namespace Telemeal.Windows
                 position = ePosition.Text,
                 privilege = (bool)ePrivilege.IsChecked
             };
-            conn.InsertEmployee(tableName, employee);
+            conn.InsertEmployee(employee);
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -56,26 +49,10 @@ namespace Telemeal.Windows
 
         private void Generate_Click(object sender, RoutedEventArgs e)
         {
-            string name = viewTableName.Text;
-            SQLiteDataReader reader = conn.ViewTable(name);
+            SQLiteDataReader reader = conn.ViewTable("Employee");
             while (reader.Read())
             {
                 ShowData.Text += string.Format($"Name: {reader["name"]}, Position: {reader["position"]}, Is Admin: {reader["privilege"]}\n");
-            }
-        }
-
-        private void Delete_Click(object sender, RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            conn.DeleteTable(NameDelete.Text);
-        }
-
-        private void eTable_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            hintTableName.Visibility = Visibility.Visible;
-            if (eTable.Text.Length > 0)
-            {
-                hintTableName.Visibility = Visibility.Hidden;
             }
         }
 
@@ -103,24 +80,6 @@ namespace Telemeal.Windows
             if (ePosition.Text.Length > 0)
             {
                 hintEmployeePosition.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void viewTableName_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            hintViewTableName.Visibility = Visibility.Visible;
-            if (viewTableName.Text.Length > 0)
-            {
-                hintViewTableName.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void NameDelete_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-            hintTableDelete.Visibility = Visibility.Visible;
-            if (NameDelete.Text.Length > 0)
-            {
-                hintTableDelete.Visibility = Visibility.Hidden;
             }
         }
     }
