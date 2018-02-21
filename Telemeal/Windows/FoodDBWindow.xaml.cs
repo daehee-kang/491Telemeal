@@ -53,15 +53,14 @@ namespace Telemeal.Windows
             SQLiteDataReader reader = conn.ViewTable("Food");
             while (reader.Read())
             {
-                IDataRecord record = reader as IDataRecord;
-                Console.WriteLine($"{record[0].ToString()}, {record[1].ToString()}");
-                int id = int.Parse(record[0].ToString());
-                string name = (string)record[1];
-                double price = (double)record[2];
-                string desc = (string)record[3];
-                string image = (string)record[4];
-                Main_Category main = (Main_Category) Enum.Parse(typeof(Main_Category), record[5].ToString());
-                Sub_Category sub = (Sub_Category) Enum.Parse(typeof(Sub_Category), record[6].ToString());
+                Console.WriteLine($"{reader["id"].ToString()}, {reader["name"].ToString()}");
+                int id = int.Parse(reader["id"].ToString());
+                string name = (string)reader["name"];
+                double price = (double)reader["price"];
+                string desc = (string)reader["desc"];
+                string image = (string)reader["img"];
+                Main_Category main = (Main_Category) Enum.Parse(typeof(Main_Category), reader["mainctgr"].ToString());
+                Sub_Category sub = (Sub_Category) Enum.Parse(typeof(Sub_Category), reader["subctgr"].ToString());
                 Food food = new Food
                 {
                     Name = name,
@@ -117,6 +116,13 @@ namespace Telemeal.Windows
                 };
                 conn.InsertFood(food);
                 lFood.Add(food);
+
+                tbAddName.Clear();
+                tbAddImage.Clear();
+                tbAddDesc.Clear();
+                tbAddPrice.Clear();
+                cbAddCategory.SelectedIndex = -1;
+
                 cbEditName.Items.Add(food.Name);
             }
             catch (ArgumentNullException ex)
@@ -129,7 +135,7 @@ namespace Telemeal.Windows
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -246,7 +252,7 @@ namespace Telemeal.Windows
                 double price = double.Parse(tbEditPrice.Text);
                 conn.DeleteFoodByNameAndPrice(name, price);
 
-                ClearFields();
+                ClearEditFields();
 
                 PopulateCBEditFoodID();
             }catch(Exception ex)
@@ -255,19 +261,13 @@ namespace Telemeal.Windows
             }
         }
 
-        private void ClearFields()
+        private void ClearEditFields()
         {
             cbEditName.SelectedIndex = -1;
             tbEditImage.Clear();
             tbEditDesc.Clear();
             tbEditPrice.Clear();
             cbEditCategory.SelectedIndex = -1;
-
-            tbAddName.Clear();
-            tbAddImage.Clear();
-            tbAddDesc.Clear();
-            tbAddPrice.Clear();
-            cbAddCategory.SelectedIndex = -1;
 
             cbEditName.Items.Clear();
             lFood.Clear();

@@ -35,7 +35,8 @@ namespace Telemeal.Model
                 $"desc VARCHAR(200), " +
                 $"img VARCHAR(100), " +
                 $"mainctgr INTEGER, " +
-                $"subctgr INTEGER NOT NULL)";
+                $"subctgr INTEGER NOT NULL," +
+                $"CONSTRAINT name_price_ctgr_unique_key UNIQUE (name, price, subctgr))";
             sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
             sqlite_cmd.ExecuteNonQuery();
         }
@@ -46,7 +47,7 @@ namespace Telemeal.Model
                 $"(id INTEGER NOT NULL, " +
                 $"name VARCHAR(50) NOT NULL, " +
                 $"position VARCHAR(50), " +
-                $"privilege BOOL " +
+                $"privilege BOOL, " +
                 $"PRIMARY KEY(id, name))";
             sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
             sqlite_cmd.ExecuteNonQuery();
@@ -77,7 +78,7 @@ namespace Telemeal.Model
             string employeeName = employee.name;
             string employeePosition = employee.position;
             bool employeePrivilege = employee.privilege;
-            string cmd = $"INSERT INTO Employee (id, name, position, privilege) VALUES ('{employeeName}', '{employeePosition}', '{employeePrivilege}')";
+            string cmd = $"INSERT INTO Employee (id, name, position, privilege) VALUES ({employeeID}, '{employeeName}', '{employeePosition}', '{employeePrivilege}')";
             sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
             sqlite_cmd.ExecuteNonQuery();
         }
@@ -111,15 +112,17 @@ namespace Telemeal.Model
             sqlite_cmd.ExecuteNonQuery();
         }
 
-        public void DeleteFoodByName(String name)
+        public void DeleteFoodByName(string name)
         {
-<<<<<<< HEAD
-            string cmd = $"DELETE FROM {tableName} WHERE id = @id";
-=======
             string cmd = $"DELETE FROM Food WHERE name = '{name}'";
->>>>>>> c67714997616d76b75f09646b1f121ea687791df
             sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
-            sqlite_cmd.Parameters.AddWithValue("@id", id);
+            sqlite_cmd.ExecuteNonQuery();
+        }
+
+        public void DeleteEmployeeByName(string name)
+        {
+            string cmd = $"DELETE FROM Employee WHERE name = '{name}'";
+            sqlite_cmd = new SQLiteCommand(cmd, sqlite_conn);
             sqlite_cmd.ExecuteNonQuery();
         }
 

@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Telemeal.Windows"
         mc:Ignorable="d"
-        Title="EmployeeDBTestWindow" Height="300" Width="400" WindowState="Maximized">
+        Title="EmployeeDBTestWindow" Height="200" Width="400" WindowState="Maximized">
     <Viewbox>
         <UniformGrid Rows="1" Columns="2">
-            <StackPanel>
+            <StackPanel Margin="10" Width="200">
                 <TextBlock>Insert Employee:</TextBlock>
                 <Grid>
                     <TextBlock TextAlignment="Right" Foreground="Gray" Name="hintEmployeeID">Employee ID</TextBlock>
@@ -24,15 +24,15 @@
                 </Grid>
                 <Grid>
                     <TextBlock TextAlignment="Right" Foreground="Gray">Give Admin Privileges</TextBlock>
-                    <CheckBox Name="ePrivilege" IsChecked="{Binding isAdmin}" Margin="150,0,0,0"></CheckBox>
+                    <CheckBox Name="ePrivilege" IsChecked="{Binding isAdmin}" Margin="0,0,0,0"></CheckBox>
                 </Grid>
                 <Button Name="AddEmployee" Click="AddEmployee_Click">Add Employee</Button>
                 
             </StackPanel>
-            <StackPanel>
+            <StackPanel Margin="10" Width="200">
                 <TextBlock>View Your Database:</TextBlock>
                 <ScrollViewer Height="93">
-                    <TextBlock Name="ShowData"/>
+                    <TextBlock FontSize="8" Name="ShowData" TextWrapping="Wrap"/>
                 </ScrollViewer>
                 <Button Name="Generate" Click="Generate_Click">View Employee</Button>
             </StackPanel>

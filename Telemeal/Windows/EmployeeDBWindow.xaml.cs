@@ -24,21 +24,29 @@ namespace Telemeal.Windows
         dbConnection conn = new dbConnection();
         public EmployeeDBTestWindow()
         {
-            //conn.CreateEmployeeTable();
+            conn.DeleteEmployeeByName("");
+
             InitializeComponent();
         }
 
         private void AddEmployee_Click(object sender, RoutedEventArgs e)
         {
             Button b = sender as Button;
-            Employee employee = new Employee
+            try
             {
-                ID = int.Parse(eID.Text),
-                name = eName.Text,
-                position = ePosition.Text,
-                privilege = (bool)ePrivilege.IsChecked
-            };
-            conn.InsertEmployee(employee);
+                Employee employee = new Employee
+                {
+                    ID = int.Parse(eID.Text),
+                    name = eName.Text,
+                    position = ePosition.Text,
+                    privilege = (bool)ePrivilege.IsChecked
+                };
+                conn.InsertEmployee(employee);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -50,6 +58,7 @@ namespace Telemeal.Windows
         private void Generate_Click(object sender, RoutedEventArgs e)
         {
             SQLiteDataReader reader = conn.ViewTable("Employee");
+            ShowData.Text = "";
             while (reader.Read())
             {
                 ShowData.Text += string.Format($"Name: {reader["name"]}, Position: {reader["position"]}, Is Admin: {reader["privilege"]}\n");
