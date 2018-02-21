@@ -40,7 +40,7 @@ namespace Telemeal.Windows
             SQLiteDataReader reader = conn.ViewTable("Food");
             while (reader.Read())
             {
-                foods.Add(new Food() { FoodID = ((int)reader["id"]), Name = ((string)reader["name"]), Price = ((double)reader["price"]),
+                foods.Add(new Food() { Name = ((string)reader["name"]), Price = ((double)reader["price"]),
                     Description = ((string)reader["desc"]), Img = ((string)reader["img"]),SubCtgr = categories[(int)reader["subctgr"]].SubCtgr});
             }
 
@@ -202,10 +202,10 @@ namespace Telemeal.Windows
             ScrollViewer viewer = new ScrollViewer();
             viewer.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             Grid grid = new Grid();
-            grid.Tag = f.FoodID;
+            grid.Tag = f.Name;
             grid.Height = 100;
             grid.Background = new SolidColorBrush(Colors.AntiqueWhite);
-            grid.MouseDown += new MouseButtonEventHandler(FoodClick);
+            //grid.MouseDown += new MouseButtonEventHandler(FoodClick);
 
             ColumnDefinition gridCol1 = new ColumnDefinition();
             ColumnDefinition gridCol2 = new ColumnDefinition();
@@ -262,7 +262,7 @@ namespace Telemeal.Windows
 
             Menu.Children.Add(grid);
         }
-
+        /*
         private void FoodClick(object sender, MouseButtonEventArgs e)
         {
             ItemCart.DisplayMemberPath = "Name";
@@ -280,7 +280,7 @@ namespace Telemeal.Windows
             this.taxTBox.Text = string.Format("{0:F2}", total* tax);
             this.subtotalTBox.Text = string.Format("{0:F2}", (total + Double.Parse(taxTBox.Text)));
         }
-
+        */
         public Visual GetDescendantByType(Visual element, Type type)
         {
             if (element == null) return null;
