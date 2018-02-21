@@ -21,11 +21,11 @@ namespace Telemeal.Windows
     /// </summary>
     public partial class EmployeeDBTestWindow : Window
     {
+        private static string ERROR_CODE_MRF = "Required Fields: Name, Price, Category -- ";
+        private static string ERROR_CODE_IDT = "Invalid Datatype: ";
         dbConnection conn = new dbConnection();
         public EmployeeDBTestWindow()
         {
-            conn.DeleteEmployeeByName("");
-
             InitializeComponent();
         }
 
@@ -34,6 +34,10 @@ namespace Telemeal.Windows
             Button b = sender as Button;
             try
             {
+                if (eID.Text == "")
+                    throw new ArgumentNullException("Missing ID");
+                if (eName.Text == "")
+                    throw new ArgumentNullException("Missing Name");
                 Employee employee = new Employee
                 {
                     ID = int.Parse(eID.Text),
@@ -42,7 +46,16 @@ namespace Telemeal.Windows
                     privilege = (bool)ePrivilege.IsChecked
                 };
                 conn.InsertEmployee(employee);
-            }catch(Exception ex)
+            }
+            catch(ArgumentNullException ex)
+            {
+                MessageBox.Show(ERROR_CODE_MRF + ex.Message);
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show(ERROR_CODE_IDT);
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
