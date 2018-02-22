@@ -26,12 +26,29 @@ namespace Telemeal.Windows
         public ViewDB()
         {
             InitializeComponent();
+            List<FoodwID> foods = new List<FoodwID>();
             SQLiteDataReader reader = conn.ViewTable("Food");
             while (reader.Read())
             {
-                IDataRecord record = reader as IDataRecord;
-                tbDataView.Text += String.Format($"{record[0]}, {record[1]}, {record[2]}, {record[3]}, {record[4]}, {record[5]}, {record[6]}\n");
+                foods.Add(new FoodwID
+                {
+                    id = int.Parse(reader["id"].ToString()),
+                    name = reader["name"].ToString(),
+                    price = (double)reader["price"],
+                    desc = (string)reader["desc"],
+                    img = (string)reader["img"],
+                    subctgr = (Sub_Category) Enum.Parse(typeof(Sub_Category), reader["subctgr"].ToString())
+                });
             }
+            dgFoods.ItemsSource = foods;
         }
+    }
+    public class FoodwID {
+        public int id { get; set; }
+        public string name { get; set; }
+        public double price { get; set; }
+        public string desc { get; set; }
+        public string img { get; set; }
+        public Sub_Category subctgr { get; set; }
     }
 }

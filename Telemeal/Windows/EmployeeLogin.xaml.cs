@@ -50,7 +50,7 @@ namespace Telemeal.Windows
             bool admin = false;
             while(reader.Read())
             {
-                ADMINID = ((int)reader["ID"]).ToString();
+                ADMINID = reader["ID"].ToString();
                 ADMINNAME = ((string)reader["name"]);
                 if (EmployeeID.Password.Equals(ADMINID) && EmployeeName.Text.Equals(ADMINNAME))
                 {

@@ -41,7 +41,7 @@ namespace Telemeal.Windows
             while (reader.Read())
             {
                 foods.Add(new Food() { Name = ((string)reader["name"]), Price = ((double)reader["price"]),
-                    Description = ((string)reader["desc"]), Img = ((string)reader["img"]),SubCtgr = categories[(int)reader["subctgr"]].SubCtgr});
+                    Description = ((string)reader["desc"]), Img = ((string)reader["img"]),SubCtgr = categories[int.Parse(reader["subctgr"].ToString())].SubCtgr});
             }
 
             this.totalTBox.Text = total.ToString();
@@ -205,7 +205,7 @@ namespace Telemeal.Windows
             grid.Tag = f.Name;
             grid.Height = 100;
             grid.Background = new SolidColorBrush(Colors.AntiqueWhite);
-            //grid.MouseDown += new MouseButtonEventHandler(FoodClick);
+            grid.MouseDown += new MouseButtonEventHandler(FoodClick);
 
             ColumnDefinition gridCol1 = new ColumnDefinition();
             ColumnDefinition gridCol2 = new ColumnDefinition();
@@ -262,14 +262,14 @@ namespace Telemeal.Windows
 
             Menu.Children.Add(grid);
         }
-        /*
+        
         private void FoodClick(object sender, MouseButtonEventArgs e)
         {
             ItemCart.DisplayMemberPath = "Name";
             PriceCart.DisplayMemberPath = "Price";
 
             Grid foodGrid = sender as Grid;
-            Food f = foods.Where(x => x.FoodID == int.Parse(foodGrid.Tag.ToString())).First();
+            Food f = foods.Where(x => x.Name == foodGrid.Tag.ToString()).First();
 
             cart.Add(f);
             ItemCart.Items.Add(f);
@@ -280,7 +280,7 @@ namespace Telemeal.Windows
             this.taxTBox.Text = string.Format("{0:F2}", total* tax);
             this.subtotalTBox.Text = string.Format("{0:F2}", (total + Double.Parse(taxTBox.Text)));
         }
-        */
+        
         public Visual GetDescendantByType(Visual element, Type type)
         {
             if (element == null) return null;

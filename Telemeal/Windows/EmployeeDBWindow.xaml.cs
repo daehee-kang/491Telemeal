@@ -47,7 +47,7 @@ namespace Telemeal.Windows
                 };
                 conn.InsertEmployee(employee);
             }
-            catch(ArgumentNullException ex)
+            catch (ArgumentNullException ex)
             {
                 MessageBox.Show(ERROR_CODE_MRF + ex.Message);
             }
